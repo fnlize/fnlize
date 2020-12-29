@@ -57,6 +57,14 @@ var (
 					Type:        "integer",
 					Description: "Port where the application runs on",
 				},
+				"command": {
+					Type:        "string",
+					Description: "Command to be passed to the container",
+				},
+				"args": {
+					Type:        "string",
+					Description: "Args to be passed to the container",
+				},
 			},
 		},
 	}
