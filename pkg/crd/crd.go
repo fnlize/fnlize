@@ -31,13 +31,14 @@ const (
 	crdVersion   = "v1"
 )
 
+// ensureCRDMaxRetries ensure CRD will be created
+const ensureCRDMaxRetries = 5
+
 // ensureCRD checks if the given CRD type exists, and creates it if
 // needed. (Note that this creates the CRD type; it doesn't create any
 // _instances_ of that type.)
 func ensureCRD(logger *zap.Logger, clientset *apiextensionsclient.Clientset, crd *apiextensionsv1beta1.CustomResourceDefinition) (err error) {
-	maxRetries := 5
-
-	for i := 0; i < maxRetries; i++ {
+	for i := 0; i < ensureCRDMaxRetries; i++ {
 		_, err = clientset.ApiextensionsV1beta1().CustomResourceDefinitions().Create(crd)
 		if err == nil {
 			return nil
@@ -48,7 +49,7 @@ func ensureCRD(logger *zap.Logger, clientset *apiextensionsclient.Clientset, crd
 			return nil
 		} else {
 			// The requests fail to connect to k8s api server before
-			// istio-prxoy is ready to serve traffic. Retry again.
+			// istio-proxy is ready to serve traffic. Retry again.
 			logger.Info("error connecting to kubernetes api service, retrying", zap.Error(err))
 			time.Sleep(500 * time.Duration(2*i) * time.Millisecond)
 			continue
@@ -58,9 +59,9 @@ func ensureCRD(logger *zap.Logger, clientset *apiextensionsclient.Clientset, crd
 	return err
 }
 
-// Ensure CRDs
+// EnsureFissionCRDs Ensure CRDs will be created
 func EnsureFissionCRDs(logger *zap.Logger, clientset *apiextensionsclient.Clientset) error {
-	crds := []apiextensionsv1beta1.CustomResourceDefinition{
+	var CRDs = []apiextensionsv1beta1.CustomResourceDefinition{
 		// Functions
 		{
 			ObjectMeta: metav1.ObjectMeta{
@@ -196,7 +197,7 @@ func EnsureFissionCRDs(logger *zap.Logger, clientset *apiextensionsclient.Client
 			},
 		},
 	}
-	for _, crd := range crds {
+	for _, crd := range CRDs {
 		err := ensureCRD(logger, clientset, &crd)
 		if err != nil {
 			return err

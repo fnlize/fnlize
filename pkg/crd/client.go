@@ -18,7 +18,9 @@ package crd
 
 import (
 	"errors"
+	"fmt"
 	"os"
+	"path"
 	"time"
 
 	apiextensionsclient "k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset"
@@ -38,29 +40,62 @@ type (
 	}
 )
 
-// Get a kubernetes client using the kubeconfig file at the
-// environment var $KUBECONFIG, or an in-cluster config if that's
-// undefined.
+// GetKubeconfig Get kube config file path from environment var $KUBECONFIG,
+// or get $HOME/.kube/config
+func GetKubeconfig() (kubeconfig string, err error) {
+	kubeconfig = os.Getenv("KUBECONFIG")
+	if len(kubeconfig) != 0 {
+		return
+	}
+
+	var homeDir string
+	if homeDir, err = os.UserHomeDir(); err != nil {
+		err = fmt.Errorf("cannot get kube config file")
+		return
+	}
+	var fileInfo os.FileInfo
+	if fileInfo, err = os.Stat(path.Join(homeDir, ".kube", "config")); err != nil {
+		err = fmt.Errorf("cannot get kube config file")
+		return
+	}
+	if fileInfo.IsDir() {
+		err = fmt.Errorf("cannot get kube config file")
+		return
+	}
+	kubeconfig = path.Join(homeDir, ".kube", "config")
+	return
+}
+
+// GetClientset Get a kubernetes client using the kubeconfig file at the
+// environment var $KUBECONFIG, or an in-cluster config if that's undefined.
+func GetClientset() (config *rest.Config, err error) {
+	var kubeConfig string
+	if kubeConfig, err = GetKubeconfig(); err != nil {
+		fmt.Printf("get kube config file with error: %v", err)
+		err = nil // clean errors
+
+		if config, err = rest.InClusterConfig(); err != nil {
+			return
+		}
+	} else {
+		if config, err = clientcmd.BuildConfigFromFlags("", kubeConfig); err != nil {
+			return
+		}
+	}
+	return
+}
+
+// GetKubernetesClient Get a kubernetes client using the kubeconfig file at the
+// environment var $KUBECONFIG, or an in-cluster config if that's undefined.
 func GetKubernetesClient() (*rest.Config, *kubernetes.Clientset, *apiextensionsclient.Clientset, error) {
 	var config *rest.Config
 	var err error
 
-	// get the config, either from kubeconfig or using our
-	// in-cluster service account
-	kubeConfig := os.Getenv("KUBECONFIG")
-	if len(kubeConfig) != 0 {
-		config, err = clientcmd.BuildConfigFromFlags("", kubeConfig)
-		if err != nil {
-			return nil, nil, nil, err
-		}
-	} else {
-		config, err = rest.InClusterConfig()
-		if err != nil {
-			return nil, nil, nil, err
-		}
+	if config, err = GetClientset(); err != nil {
+		return nil, nil, nil, err
 	}
 
-	// creates the clientset
+	// creates the client set
 	clientset, err := kubernetes.NewForConfig(config)
 	if err != nil {
 		return nil, nil, nil, err
@@ -114,19 +149,8 @@ func GetDynamicClient() (dynamic.Interface, error) {
 	var config *rest.Config
 	var err error
 
-	// get the config, either from kubeconfig or using our
-	// in-cluster service account
-	kubeConfig := os.Getenv("KUBECONFIG")
-	if len(kubeConfig) != 0 {
-		config, err = clientcmd.BuildConfigFromFlags("", kubeConfig)
-		if err != nil {
-			return nil, err
-		}
-	} else {
-		config, err = rest.InClusterConfig()
-		if err != nil {
-			return nil, err
-		}
+	if config, err = GetClientset(); err != nil {
+		return nil, err
 	}
 	dynamicClient, err := dynamic.NewForConfig(config)
 	if err != nil {

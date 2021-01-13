@@ -18,7 +18,6 @@ package crd
 
 import (
 	"log"
-	"os"
 	"testing"
 	"time"
 
@@ -167,7 +166,7 @@ func environmentTests(crdClient genInformerCoreV1.CoreV1Interface) {
 	ei := crdClient.Environments(testNS)
 
 	// cleanup from old crashed tests, ignore errors
-	ei.Delete(environment.ObjectMeta.Name, nil)
+	 ei.Delete(environment.ObjectMeta.Name, nil)
 
 	// create
 	e, err := ei.Create(environment)
@@ -323,7 +322,6 @@ func httpTriggerTests(crdClient genInformerCoreV1.CoreV1Interface) {
 		log.Printf("watch event took %v", time.Since(start))
 		recvd = true
 	}
-
 }
 
 func kubernetesWatchTriggerTests(crdClient genInformerCoreV1.CoreV1Interface) {
@@ -422,13 +420,6 @@ func kubernetesWatchTriggerTests(crdClient genInformerCoreV1.CoreV1Interface) {
 }
 
 func TestCrd(t *testing.T) {
-	// skip test if no cluster available for testing
-	kubeconfig := os.Getenv("KUBECONFIG")
-	if len(kubeconfig) == 0 {
-		log.Println("Skipping test, no kubernetes cluster")
-		return
-	}
-
 	config := zap.NewDevelopmentConfig()
 	config.EncoderConfig.EncodeTime = zapcore.ISO8601TimeEncoder
 	logger, err := config.Build()
