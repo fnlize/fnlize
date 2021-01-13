@@ -166,7 +166,10 @@ func environmentTests(crdClient genInformerCoreV1.CoreV1Interface) {
 	ei := crdClient.Environments(testNS)
 
 	// cleanup from old crashed tests, ignore errors
-	 ei.Delete(environment.ObjectMeta.Name, nil)
+	if err := ei.Delete(environment.ObjectMeta.Name, nil); err != nil {
+		log.Println("cleanup from old crashed tests")
+		err = nil
+	}
 
 	// create
 	e, err := ei.Create(environment)
