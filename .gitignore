@@ -32,3 +32,7 @@ environments/dotnet20/Builder/.vs/
 environments/dotnet20/.vs/
 environments/dotnet20/obj/
 environments/dotnet20/bin/
+
+# Golang coverage files
+*.out
+coverage.html
