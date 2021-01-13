@@ -1,6 +1,6 @@
 ARG GOPKG=github.com/fission/fission
 
-FROM golang:1.14-alpine as godep
+FROM golang:1.15-alpine as godep
 
 ENV GO111MODULE=on
 
@@ -8,6 +8,8 @@ WORKDIR /go/src/${GOPKG}
 
 # To reuse build cache, copy go.mod & go.sum and download dependencies first.
 COPY go.* ./
+
+RUN apk add --no-cache bash ca-certificates git gcc g++ libc-dev
 
 RUN go mod download
 
