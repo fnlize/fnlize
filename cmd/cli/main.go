@@ -19,7 +19,7 @@ package main
 import (
 	"os"
 
-	"github.com/fission/fission/cmd/fission-cli/app"
+	"github.com/fission/fission/cmd/cli/app"
 	"github.com/fission/fission/pkg/fission-cli/console"
 )
 

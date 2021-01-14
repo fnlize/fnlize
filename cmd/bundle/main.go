@@ -29,7 +29,7 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 
-	"github.com/fission/fission/cmd/fission-bundle/mqtrigger"
+	"github.com/fission/fission/cmd/bundle/mqtrigger"
 	"github.com/fission/fission/pkg/buildermgr"
 	"github.com/fission/fission/pkg/controller"
 	"github.com/fission/fission/pkg/executor"

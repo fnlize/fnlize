@@ -12,11 +12,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-.DEFAULT_GOAL := check
+VERSION      = v0.1.0
+TARGETS     := builder fetcher preupgradechecks cli bundle
+PKG          = github.com/fission/fission
+BUILD_DIR    = ./build
+IMAGE_PREFIX = $(strip )
+IMAGE_SUFFIX = $(strip )
+OUTPUT_DIR   = ./bin
+CMD_DIR      = ./cmd
 
+COMMIT := $(strip $(shell git rev-parse --short HEAD 2>/dev/null))
+COMMIT := $(COMMIT)$(shell git diff-files --quiet || echo '-dirty')
+COMMIT := $(if $(COMMIT),$(COMMIT),"Unknown")
+
+.PHONY: check
 check: test-run build clean
 
-# run basic check scripts
+.PHONY: test-run
 test-run:
 	hack/verify-gofmt.sh
 	hack/verify-govet.sh
@@ -24,24 +36,35 @@ test-run:
 	hack/runtests.sh
 	@rm -f coverage.txt
 
-# ensure the changes are buildable
+.PHONY: build
 build:
-	go build -v -o cmd/fission-bundle/fission-bundle ./cmd/fission-bundle/
-	go build -v -o cmd/fission-cli/fission ./cmd/fission-cli/
-	go build -v -o cmd/fetcher/fetcher ./cmd/fetcher/
-	go build -v -o cmd/builder/builder ./cmd/builder/
+	@for target in $(TARGETS); do                                       \
+		go build -i -v -o $(OUTPUT_DIR)/$${target}                      \
+			-ldflags "-s -w -X $(PKG)/pkg/version.Version=$(VERSION)    \
+			-X $(PKG)/pkg/version.Commit=$(COMMIT)                      \
+			-X $(PKG)/pkg/version.Package=$(PKG)"                       \
+			$(CMD_DIR)/$${target};                                      \
+	done
 
-# install CLI binary to $PATH
+.PHONY: install
 install: build
-	mv cmd/fission-cli/fission $(GOPATH)/bin
+	$(INSTALL) $(OUTPUT_DIR)/cli $(GOPATH)/bin/fission
 
-# build images (environment images are not included)
+.PHONY: image
 image:
-	docker build -t fetcher -f cmd/fetcher/Dockerfile.fission-fetcher .
-	docker build -t builder -f cmd/builder/Dockerfile.fission-builder .
-	docker build -t fission-bundle -f cmd/fission-bundle/Dockerfile.fission-bundle .
-	docker build -t builder -f cmd/preupgradechecks/Dockerfile.fission-preupgradechecks .
+	@for target in $(TARGETS); do                                       \
+		image=$(IMAGE_PREFIX)$${target}$(IMAGE_SUFFIX);                 \
+		echo Building $${image}:$(VERSION);                             \
+		docker build -t $${image}:$(VERSION)                            \
+			--build-arg PKG=${PKG}                                      \
+			--build-arg GITCOMMIT=${COMMIT}                             \
+			--build-arg BUILDVERSION=${COMMIT}                          \
+			--build-arg BUILDDATE=${COMMIT}                             \
+			--build-arg TARGET=$${target}                               \
+			-f $(BUILD_DIR)/$${target}/Dockerfile .;                    \
+	done
 
+.PHONY: clean
 clean:
 	@rm -f cmd/fission-bundle/fission-bundle
 	@rm -f cmd/fission-cli/fission
