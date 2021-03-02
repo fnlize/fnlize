@@ -1,5 +1,5 @@
 /*
-Copyright 2019 The Fission Authors.
+Copyright 2021 The Fission Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -18,8 +18,9 @@ package timetrigger
 
 import (
 	"fmt"
-	"github.com/fnlize/fnlize/pkg/fission-cli/cmd"
 	"time"
+
+	"github.com/fnlize/fnlize/pkg/fission-cli/cmd"
 
 	"github.com/pkg/errors"
 	"github.com/robfig/cron"

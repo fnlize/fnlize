@@ -2,7 +2,7 @@
 // You can reach the original file with the following link:
 // https://github.com/nats-io/stan.go/blob/master/examples/stan-pub/main.go
 
-// Copyright 2016-2019 The NATS Authors
+// Copyright 2021-2019 The NATS Authors
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
