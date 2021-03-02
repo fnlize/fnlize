@@ -2,11 +2,9 @@
 
 [Fission](http://fission.io/) is a framework for serverless functions on Kubernetes.
 
-
 ## Prerequisites
 
 - Kubernetes 1.9 or later
-
 
 ## Helm charts
 
@@ -21,16 +19,16 @@ The following table lists two helm charts for Fission.
 
 To install the chart with the release name `my-release`,
 
-```bash
-$ helm install --name my-release fission-all
+``` bash
+helm install --name my-release fission-all
 ```
 
 ## Uninstalling the chart
 
 To uninstall/delete chart,
 
-```bash
-$ helm delete my-release
+``` bash
+helm delete my-release
 ```
 
 ## Configuration
@@ -48,7 +46,7 @@ Parameter | Description | Default
 `fetcher.image` | Fission fetcher repository | `fission/fetcher`
 `fetcher.imageTag` | Fission fetcher image tag | `1.11.2`
 `controllerPort` | Fission Controller service port | `31313`
-`routerPort` | Fission Router service port | ` 31314`
+`routerPort` | Fission Router service port | `31314`
 `functionNamespace` | Namespace in which to run fission functions (this is different from the release namespace) | `fission-function`
 `builderNamespace` | Namespace in which to run fission builders (this is different from the release namespace) | `fission-builder`
 `enableIstio` | Enable istio integration | `false`
@@ -76,14 +74,14 @@ Parameter | Description | Default
 `router.roundTrip.disableKeepAlive` | Disable transport keep-alive for fast switching function version | `true`
 `router.roundTrip.keepAliveTime` | The keep-alive period for an active network connection to function pod | `30s`
 `router.roundTrip.timeout` | HTTP transport request timeout | `50ms`
-`router.roundTrip.timeoutExponent` | The length of request timeout will multiply with timeoutExponent after each retry | `2` 
+`router.roundTrip.timeoutExponent` | The length of request timeout will multiply with timeoutExponent after each retry | `2`
 `router.roundTrip.maxRetries` | Max retries times of a failed request | `10`
 
 ### Extra configuration for `fission-all`
 
 Parameter | Description | Default
 --------- | ----------- | -------
-`createNamespace` | If true, create `fission-function` and `fission-builder` namespaces | ` true`
+`createNamespace` | If true, create `fission-function` and `fission-builder` namespaces | `true`
 `logger.influxdbAdmin` | Log database admin username | `admin`
 `logger.fluentdImageRepository` | Logger fluentbit image repository | `index.docker.io`
 `logger.fluentdImage` | Logger fluentbit image | `fluent/fluent-bit`
@@ -109,18 +107,18 @@ Please note that deploying of Azure Storage Queue or Kafka is not done by Fissio
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
 ```bash
-$ helm install --name my-release --set image=custom/fission-bundle,imageTag=v1 fission-all
+helm install --name my-release --set image=custom/fission-bundle,imageTag=v1 fission-all
 ```
 
 If you're using minikube, set serviceType and routerServiceType to NodePort:
 
 ```bash
-$ helm install --name my-release --set serviceType=NodePort,routerServiceType=NodePort fission-all
+helm install --name my-release --set serviceType=NodePort,routerServiceType=NodePort fission-all
 ```
 
 You can also set parameters with a yaml file (see [values.yaml](fission-all/values.yaml) for
 what it should look like):
 
 ```bash
-$ helm install --name my-release -f values.yaml fission-all
+helm install --name my-release -f values.yaml fission-all
 ```

@@ -17,8 +17,8 @@ RUN cd /go/src/${PKG}/cmd/${TARGET} && \
     CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v \
     -o /go/bin/${TARGET} \
     -ldflags "-X ${PKG}/pkg/info.GitCommit=${GITCOMMIT} \
-              -X ${PKG}/pkg/info.BuildDate=${BUILDDATE} \
-              -X ${PKG}/pkg/info.Version=${BUILDVERSION}"
+    -X ${PKG}/pkg/info.BuildDate=${BUILDDATE} \
+    -X ${PKG}/pkg/info.Version=${BUILDVERSION}"
 
 FROM alpine:3.12
 
@@ -29,4 +29,4 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
 COPY --from=builder /go/bin/${TARGET} /usr/local/bin
 
-cmd ["bundle"]
+CMD ["bundle"]

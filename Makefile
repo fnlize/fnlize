@@ -63,10 +63,3 @@ image:
 			--build-arg TARGET=$${target}                                 \
 			-f $(BUILD_DIR)/$${target}/Dockerfile .;                      \
 	done
-
-.PHONY: clean
-clean:
-	@rm -f cmd/fission-bundle/fission-bundle
-	@rm -f cmd/fission-cli/fission
-	@rm -f cmd/fetcher/fetcher
-	@rm -f cmd/builder/builder
