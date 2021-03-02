@@ -34,12 +34,12 @@ import (
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	fv1 "github.com/fission/fission/pkg/apis/core/v1"
-	"github.com/fission/fission/pkg/controller/client"
-	"github.com/fission/fission/pkg/controller/client/rest"
-	"github.com/fission/fission/pkg/crd"
-	ferror "github.com/fission/fission/pkg/error"
-	"github.com/fission/fission/pkg/fission-cli/cmd"
+	fv1 "github.com/fnlize/fnlize/pkg/apis/core/v1"
+	"github.com/fnlize/fnlize/pkg/controller/client"
+	"github.com/fnlize/fnlize/pkg/controller/client/rest"
+	"github.com/fnlize/fnlize/pkg/crd"
+	ferror "github.com/fnlize/fnlize/pkg/error"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cmd"
 )
 
 var (

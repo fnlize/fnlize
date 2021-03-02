@@ -21,7 +21,7 @@ import (
 
 	"go.uber.org/zap"
 
-	builder "github.com/fission/fission/pkg/builder"
+	builder "github.com/fnlize/fnlize/pkg/builder"
 )
 
 // Usage: builder <shared volume path>

@@ -2,7 +2,7 @@
 
 Annotations are used by the core Kubernetes system and to even larger extent by projects such as Istio Ingress Controllers and Prometheus and such.
 
-Users want to add annotations to some objects such as ingress (https://github.com/fission/fission/issues/989).
+Users want to add annotations to some objects such as ingress (https://github.com/fnlize/fnlize/issues/989).
 
 To enable the users to use annotations, here are some thoughts and ideas:
 

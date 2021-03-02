@@ -20,8 +20,8 @@ import (
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
 
-	"github.com/fission/fission/pkg/crd"
-	fetcherConfig "github.com/fission/fission/pkg/fetcher/config"
+	"github.com/fnlize/fnlize/pkg/crd"
+	fetcherConfig "github.com/fnlize/fnlize/pkg/fetcher/config"
 )
 
 // Start the buildermgr service.

@@ -7,9 +7,9 @@ Prerequisites
 
   Get access to:
   - The fission dockerhub account (https://hub.docker.com/r/fission/ if you have access, you will see Fission listed in your organizations: https://hub.docker.com/organizations/ )
-  - Fission-charts repo (https://github.com/fission/fission-charts)
+  - Fission-charts repo (https://github.com/fnlize/fnlize-charts)
   - Fission Documentation Repo (https://github.com/fission/docs.fission.io)
-  - Fission main repo (https://github.com/fission/fission)
+  - Fission main repo (https://github.com/fnlize/fnlize)
 
 2. Get a Github "personal access token":
    https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/
@@ -39,7 +39,7 @@ Check that the build is green!
 Fix the build if it is not green. DON'T proceed unless build is GREEN!
 
 
-Updating Fission Repo (https://github.com/fission/fission)
+Updating Fission Repo (https://github.com/fnlize/fnlize)
 ------------------------------
 
 1. cd to the top of the fission repo, create a branch:
@@ -69,7 +69,7 @@ Updating Fission Repo (https://github.com/fission/fission)
 
 8. Test build from master branch for sanity check and make sure the master build is green
 
-Updating Fission Charts (https://github.com/fission/fission-charts)
+Updating Fission Charts (https://github.com/fnlize/fnlize-charts)
 ------------------------------
 a. Switch to fission/fission-charts repo and run `index.sh` in that repo.  (Don't edit the index.yaml in this repo manually.  index.sh generates it, using the helm repo CLI.)
 

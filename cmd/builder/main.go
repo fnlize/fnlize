@@ -23,7 +23,7 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 
-	"github.com/fission/fission/cmd/builder/app"
+	"github.com/fnlize/fnlize/cmd/builder/app"
 )
 
 // Usage: builder <shared volume path>

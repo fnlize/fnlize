@@ -36,7 +36,7 @@ build_cli() {
     fi
 
     GOOS=$os GOARCH=$arch go build -gcflags=-trimpath=$GOPATH -asmflags=-trimpath=$GOPATH \
-        -ldflags "-X github.com/fission/fission/pkg/info.GitCommit=$gitcommit -X github.com/fission/fission/pkg/info.BuildDate=$date -X github.com/fission/fission/pkg/info.Version=$version" -o $binary .
+        -ldflags "-X github.com/fnlize/fnlize/pkg/info.GitCommit=$gitcommit -X github.com/fnlize/fnlize/pkg/info.BuildDate=$date -X github.com/fnlize/fnlize/pkg/info.Version=$version" -o $binary .
 
     outdir=$BUILDDIR/cli/$osName/
     mkdir -p $outdir

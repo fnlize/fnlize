@@ -29,13 +29,13 @@ import (
 	"github.com/pkg/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/fission/fission/pkg/controller/client"
-	"github.com/fission/fission/pkg/fission-cli/cliwrapper/cli"
-	"github.com/fission/fission/pkg/fission-cli/cmd"
-	"github.com/fission/fission/pkg/fission-cli/cmd/httptrigger"
-	"github.com/fission/fission/pkg/fission-cli/console"
-	flagkey "github.com/fission/fission/pkg/fission-cli/flag/key"
-	"github.com/fission/fission/pkg/fission-cli/util"
+	"github.com/fnlize/fnlize/pkg/controller/client"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cliwrapper/cli"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cmd"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cmd/httptrigger"
+	"github.com/fnlize/fnlize/pkg/fission-cli/console"
+	flagkey "github.com/fnlize/fnlize/pkg/fission-cli/flag/key"
+	"github.com/fnlize/fnlize/pkg/fission-cli/util"
 )
 
 type TestSubCommand struct {

@@ -28,7 +28,7 @@ import (
 	"time"
 
 	"github.com/dchest/uniuri"
-	"github.com/fission/fission/pkg/storagesvc"
+	"github.com/fnlize/fnlize/pkg/storagesvc"
 	"github.com/minio/minio-go"
 	"github.com/ory/dockertest"
 	dc "github.com/ory/dockertest/docker"

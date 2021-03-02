@@ -22,7 +22,7 @@ import (
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/fission/fission/pkg/cache"
+	"github.com/fnlize/fnlize/pkg/cache"
 )
 
 type (

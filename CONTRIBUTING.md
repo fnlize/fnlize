@@ -23,7 +23,7 @@ Table of Contents
 
 # Choose something to work on
 
-* The easiest way to start is to look at existing [issues](https://github.com/fission/fission/issues) and see if there's something there that you'd like to work on. You can filter issues with label "[Good first issue](https://github.com/fission/fission/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)" which are relatively self sufficient issues and great for first time contributors.
+* The easiest way to start is to look at existing [issues](https://github.com/fnlize/fnlize/issues) and see if there's something there that you'd like to work on. You can filter issues with label "[Good first issue](https://github.com/fnlize/fnlize/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)" which are relatively self sufficient issues and great for first time contributors.
     - If you are going to pick up an issue, it would be good to add a comment stating the intention.
     - If the contribution is a big change/new feature, please raise an issue and discuss the needs, design in the issue in detail.
 
@@ -65,8 +65,8 @@ Get the code locally and after you have made changes - you can verify formatting
 
 ```sh
 # Clone the repo
-$ git clone https://github.com/fission/fission.git $GOPATH/src/github.com/fission/fission
-$ cd $GOPATH/src/github.com/fission/fission
+$ git clone https://github.com/fnlize/fnlize.git $GOPATH/src/github.com/fnlize/fnlize
+$ cd $GOPATH/src/github.com/fnlize/fnlize
 
 $ go mod vendor
 

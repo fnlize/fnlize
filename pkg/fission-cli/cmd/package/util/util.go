@@ -30,10 +30,10 @@ import (
 	"github.com/pkg/errors"
 	uuid "github.com/satori/go.uuid"
 
-	fv1 "github.com/fission/fission/pkg/apis/core/v1"
-	"github.com/fission/fission/pkg/controller/client"
-	storageSvcClient "github.com/fission/fission/pkg/storagesvc/client"
-	"github.com/fission/fission/pkg/utils"
+	fv1 "github.com/fnlize/fnlize/pkg/apis/core/v1"
+	"github.com/fnlize/fnlize/pkg/controller/client"
+	storageSvcClient "github.com/fnlize/fnlize/pkg/storagesvc/client"
+	"github.com/fnlize/fnlize/pkg/utils"
 )
 
 func UploadArchiveFile(ctx context.Context, client client.Interface, fileName string) (*fv1.Archive, error) {

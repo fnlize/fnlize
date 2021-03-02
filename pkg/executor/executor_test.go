@@ -39,9 +39,9 @@ import (
 	"k8s.io/apimachinery/pkg/util/intstr"
 	"k8s.io/client-go/kubernetes"
 
-	fv1 "github.com/fission/fission/pkg/apis/core/v1"
-	"github.com/fission/fission/pkg/crd"
-	"github.com/fission/fission/pkg/executor/client"
+	fv1 "github.com/fnlize/fnlize/pkg/apis/core/v1"
+	"github.com/fnlize/fnlize/pkg/crd"
+	"github.com/fnlize/fnlize/pkg/executor/client"
 )
 
 func panicIf(err error) {

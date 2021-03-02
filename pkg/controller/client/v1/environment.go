@@ -19,13 +19,13 @@ package v1
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/fission/fission/pkg/controller/client/rest"
+	"github.com/fnlize/fnlize/pkg/controller/client/rest"
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	fv1 "github.com/fission/fission/pkg/apis/core/v1"
-	"github.com/fission/fission/pkg/generator/encoder"
-	v1generator "github.com/fission/fission/pkg/generator/v1"
+	fv1 "github.com/fnlize/fnlize/pkg/apis/core/v1"
+	"github.com/fnlize/fnlize/pkg/generator/encoder"
+	v1generator "github.com/fnlize/fnlize/pkg/generator/v1"
 )
 
 type (

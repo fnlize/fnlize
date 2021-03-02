@@ -26,11 +26,11 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/types"
 
-	fv1 "github.com/fission/fission/pkg/apis/core/v1"
-	"github.com/fission/fission/pkg/cache"
-	"github.com/fission/fission/pkg/crd"
-	ferror "github.com/fission/fission/pkg/error"
-	poolcache "github.com/fission/fission/pkg/newcache"
+	fv1 "github.com/fnlize/fnlize/pkg/apis/core/v1"
+	"github.com/fnlize/fnlize/pkg/cache"
+	"github.com/fnlize/fnlize/pkg/crd"
+	ferror "github.com/fnlize/fnlize/pkg/error"
+	poolcache "github.com/fnlize/fnlize/pkg/newcache"
 )
 
 type fscRequestType int

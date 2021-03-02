@@ -25,7 +25,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/fission/fission/pkg/controller/client/rest"
+	"github.com/fnlize/fnlize/pkg/controller/client/rest"
 
 	"github.com/hashicorp/go-multierror"
 	"github.com/pkg/errors"
@@ -36,13 +36,13 @@ import (
 	restclient "k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
 
-	"github.com/fission/fission/pkg/controller/client"
-	"github.com/fission/fission/pkg/fission-cli/cliwrapper/cli"
-	"github.com/fission/fission/pkg/fission-cli/console"
-	flagkey "github.com/fission/fission/pkg/fission-cli/flag/key"
-	"github.com/fission/fission/pkg/info"
-	"github.com/fission/fission/pkg/plugin"
-	"github.com/fission/fission/pkg/utils"
+	"github.com/fnlize/fnlize/pkg/controller/client"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cliwrapper/cli"
+	"github.com/fnlize/fnlize/pkg/fission-cli/console"
+	flagkey "github.com/fnlize/fnlize/pkg/fission-cli/flag/key"
+	"github.com/fnlize/fnlize/pkg/info"
+	"github.com/fnlize/fnlize/pkg/plugin"
+	"github.com/fnlize/fnlize/pkg/utils"
 )
 
 func GetFissionNamespace() string {

@@ -27,13 +27,13 @@ import (
 	"github.com/hashicorp/go-multierror"
 	"github.com/pkg/errors"
 
-	fv1 "github.com/fission/fission/pkg/apis/core/v1"
-	"github.com/fission/fission/pkg/controller/client"
-	"github.com/fission/fission/pkg/fission-cli/cliwrapper/cli"
-	"github.com/fission/fission/pkg/fission-cli/cmd"
-	"github.com/fission/fission/pkg/fission-cli/console"
-	"github.com/fission/fission/pkg/fission-cli/util"
-	"github.com/fission/fission/pkg/utils"
+	fv1 "github.com/fnlize/fnlize/pkg/apis/core/v1"
+	"github.com/fnlize/fnlize/pkg/controller/client"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cliwrapper/cli"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cmd"
+	"github.com/fnlize/fnlize/pkg/fission-cli/console"
+	"github.com/fnlize/fnlize/pkg/fission-cli/util"
+	"github.com/fnlize/fnlize/pkg/utils"
 )
 
 type ValidateSubCommand struct {

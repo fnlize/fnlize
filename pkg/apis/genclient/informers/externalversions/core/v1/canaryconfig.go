@@ -21,10 +21,10 @@ package v1
 import (
 	time "time"
 
-	corev1 "github.com/fission/fission/pkg/apis/core/v1"
-	versioned "github.com/fission/fission/pkg/apis/genclient/clientset/versioned"
-	internalinterfaces "github.com/fission/fission/pkg/apis/genclient/informers/externalversions/internalinterfaces"
-	v1 "github.com/fission/fission/pkg/apis/genclient/listers/core/v1"
+	corev1 "github.com/fnlize/fnlize/pkg/apis/core/v1"
+	versioned "github.com/fnlize/fnlize/pkg/apis/genclient/clientset/versioned"
+	internalinterfaces "github.com/fnlize/fnlize/pkg/apis/genclient/informers/externalversions/internalinterfaces"
+	v1 "github.com/fnlize/fnlize/pkg/apis/genclient/listers/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	watch "k8s.io/apimachinery/pkg/watch"

@@ -29,17 +29,17 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 
-	"github.com/fission/fission/cmd/bundle/mqtrigger"
-	"github.com/fission/fission/pkg/buildermgr"
-	"github.com/fission/fission/pkg/controller"
-	"github.com/fission/fission/pkg/executor"
-	"github.com/fission/fission/pkg/info"
-	"github.com/fission/fission/pkg/kubewatcher"
-	functionLogger "github.com/fission/fission/pkg/logger"
-	mqt "github.com/fission/fission/pkg/mqtrigger"
-	"github.com/fission/fission/pkg/router"
-	"github.com/fission/fission/pkg/storagesvc"
-	"github.com/fission/fission/pkg/timer"
+	"github.com/fnlize/fnlize/cmd/bundle/mqtrigger"
+	"github.com/fnlize/fnlize/pkg/buildermgr"
+	"github.com/fnlize/fnlize/pkg/controller"
+	"github.com/fnlize/fnlize/pkg/executor"
+	"github.com/fnlize/fnlize/pkg/info"
+	"github.com/fnlize/fnlize/pkg/kubewatcher"
+	functionLogger "github.com/fnlize/fnlize/pkg/logger"
+	mqt "github.com/fnlize/fnlize/pkg/mqtrigger"
+	"github.com/fnlize/fnlize/pkg/router"
+	"github.com/fnlize/fnlize/pkg/storagesvc"
+	"github.com/fnlize/fnlize/pkg/timer"
 )
 
 func runController(logger *zap.Logger, port int) {

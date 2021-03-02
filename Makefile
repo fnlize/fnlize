@@ -14,7 +14,7 @@
 
 VERSION      = v0.1.0
 TARGETS     := builder fetcher preupgradechecks cli bundle
-PKG          = github.com/fission/fission
+PKG          = github.com/fnlize/fnlize
 BUILD_DIR    = ./build
 IMAGE_PREFIX = $(strip )
 IMAGE_SUFFIX = $(strip )
@@ -38,8 +38,8 @@ test-run:
 
 .PHONY: build
 build:
-	@for target in $(TARGETS); do                                       \
-		go build -i -v -o $(OUTPUT_DIR)/$${target}                      \
+	@for target in $(TARGETS); do                                   \
+		go build -v -o $(OUTPUT_DIR)/$${target}                       \
 			-ldflags "-s -w -X $(PKG)/pkg/version.Version=$(VERSION)    \
 			-X $(PKG)/pkg/version.Commit=$(COMMIT)                      \
 			-X $(PKG)/pkg/version.Package=$(PKG)"                       \
@@ -52,16 +52,16 @@ install: build
 
 .PHONY: image
 image:
-	@for target in $(TARGETS); do                                       \
+	@for target in $(TARGETS); do                                     \
 		image=$(IMAGE_PREFIX)$${target}$(IMAGE_SUFFIX);                 \
 		echo Building $${image}:$(VERSION);                             \
 		docker build -t $${image}:$(VERSION)                            \
-			--build-arg PKG=${PKG}                                      \
-			--build-arg GITCOMMIT=${COMMIT}                             \
-			--build-arg BUILDVERSION=${COMMIT}                          \
-			--build-arg BUILDDATE=${COMMIT}                             \
-			--build-arg TARGET=$${target}                               \
-			-f $(BUILD_DIR)/$${target}/Dockerfile .;                    \
+			--build-arg PKG=${PKG}                                        \
+			--build-arg GITCOMMIT=${COMMIT}                               \
+			--build-arg BUILDVERSION=${COMMIT}                            \
+			--build-arg BUILDDATE=${COMMIT}                               \
+			--build-arg TARGET=$${target}                                 \
+			-f $(BUILD_DIR)/$${target}/Dockerfile .;                      \
 	done
 
 .PHONY: clean

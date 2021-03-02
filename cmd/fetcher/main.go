@@ -22,7 +22,7 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 
-	"github.com/fission/fission/cmd/fetcher/app"
+	"github.com/fnlize/fnlize/cmd/fetcher/app"
 )
 
 // Usage: fetcher <shared volume path>

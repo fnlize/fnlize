@@ -29,10 +29,10 @@ import (
 	"k8s.io/client-go/kubernetes"
 	k8sCache "k8s.io/client-go/tools/cache"
 
-	fv1 "github.com/fission/fission/pkg/apis/core/v1"
-	"github.com/fission/fission/pkg/cache"
-	"github.com/fission/fission/pkg/crd"
-	"github.com/fission/fission/pkg/utils"
+	fv1 "github.com/fnlize/fnlize/pkg/apis/core/v1"
+	"github.com/fnlize/fnlize/pkg/cache"
+	"github.com/fnlize/fnlize/pkg/crd"
+	"github.com/fnlize/fnlize/pkg/utils"
 )
 
 type (

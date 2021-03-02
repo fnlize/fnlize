@@ -24,8 +24,8 @@ import (
 	"github.com/ghodss/yaml"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/fission/fission/pkg/fission-cli/console"
-	"github.com/fission/fission/pkg/utils"
+	"github.com/fnlize/fnlize/pkg/fission-cli/console"
+	"github.com/fnlize/fnlize/pkg/utils"
 )
 
 type Resource interface {

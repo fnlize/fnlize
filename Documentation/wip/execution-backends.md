@@ -1,7 +1,7 @@
 
 # Fission Pool manager
 
-Fission's currently uses a pool of running "environments" and specialized them for execution of a function. This design served the cold start use cases well but this is not the only strategy for creation and execution of functions. For example requirements for a new execution backend have been discussed in https://github.com/fission/fission/issues/193. This document aims to discuss the currently under development "newdeploy" backend and related thoughts
+Fission's currently uses a pool of running "environments" and specialized them for execution of a function. This design served the cold start use cases well but this is not the only strategy for creation and execution of functions. For example requirements for a new execution backend have been discussed in https://github.com/fnlize/fnlize/issues/193. This document aims to discuss the currently under development "newdeploy" backend and related thoughts
 
 # Executor
 
@@ -13,7 +13,7 @@ A backend is responsible for execution of a function - which can involve provisi
 
 ### Pool Manager Backend
 
-Pool manager backend uses a pool of environment pods and specialized them when a function is invoked. The specialized pods are cleaned up if not in use after a few minutes. More details on Pool manager can be found here: https://github.com/fission/fission/blob/5c470735185b980c1f7987921db360e91c65573b/Documentation/Architecture.md
+Pool manager backend uses a pool of environment pods and specialized them when a function is invoked. The specialized pods are cleaned up if not in use after a few minutes. More details on Pool manager can be found here: https://github.com/fnlize/fnlize/blob/5c470735185b980c1f7987921db360e91c65573b/Documentation/Architecture.md
 
 ### New Deploy Backend
 

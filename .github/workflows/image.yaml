@@ -39,5 +39,5 @@ jobs:
           context: .
           tags: fnlize/${{ matrix.image }}:latest
           build-args: |
-            PKG=github.com/fission/fission
+            PKG=github.com/fnlize/fnlize
             TARGET=${{ matrix.image }}

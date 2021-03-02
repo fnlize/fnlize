@@ -26,9 +26,9 @@ import (
 	"github.com/pkg/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/fission/fission/pkg/controller/client/rest"
-	"github.com/fission/fission/pkg/fission-cli/console"
-	"github.com/fission/fission/pkg/info"
+	"github.com/fnlize/fnlize/pkg/controller/client/rest"
+	"github.com/fnlize/fnlize/pkg/fission-cli/console"
+	"github.com/fnlize/fnlize/pkg/info"
 )
 
 // TODO: we should remove this interface, having this for now is for backward compatibility.

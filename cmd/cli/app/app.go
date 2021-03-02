@@ -3,36 +3,36 @@ package app
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/fission/fission/pkg/controller/client"
-	"github.com/fission/fission/pkg/controller/client/rest"
-	"github.com/fission/fission/pkg/fission-cli/cliwrapper/cli"
-	wrapper "github.com/fission/fission/pkg/fission-cli/cliwrapper/driver/cobra"
-	"github.com/fission/fission/pkg/fission-cli/cliwrapper/driver/cobra/helptemplate"
-	"github.com/fission/fission/pkg/fission-cli/cmd"
-	"github.com/fission/fission/pkg/fission-cli/cmd/canaryconfig"
-	"github.com/fission/fission/pkg/fission-cli/cmd/environment"
-	"github.com/fission/fission/pkg/fission-cli/cmd/function"
-	"github.com/fission/fission/pkg/fission-cli/cmd/httptrigger"
-	"github.com/fission/fission/pkg/fission-cli/cmd/kubewatch"
-	"github.com/fission/fission/pkg/fission-cli/cmd/mqtrigger"
-	_package "github.com/fission/fission/pkg/fission-cli/cmd/package"
-	"github.com/fission/fission/pkg/fission-cli/cmd/spec"
-	"github.com/fission/fission/pkg/fission-cli/cmd/support"
-	"github.com/fission/fission/pkg/fission-cli/cmd/timetrigger"
-	"github.com/fission/fission/pkg/fission-cli/cmd/version"
-	"github.com/fission/fission/pkg/fission-cli/console"
-	"github.com/fission/fission/pkg/fission-cli/flag"
-	flagkey "github.com/fission/fission/pkg/fission-cli/flag/key"
-	"github.com/fission/fission/pkg/fission-cli/util"
-	_ "github.com/fission/fission/pkg/mqtrigger/messageQueue/azurequeuestorage"
-	_ "github.com/fission/fission/pkg/mqtrigger/messageQueue/kafka"
-	_ "github.com/fission/fission/pkg/mqtrigger/messageQueue/nats"
+	"github.com/fnlize/fnlize/pkg/controller/client"
+	"github.com/fnlize/fnlize/pkg/controller/client/rest"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cliwrapper/cli"
+	wrapper "github.com/fnlize/fnlize/pkg/fission-cli/cliwrapper/driver/cobra"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cliwrapper/driver/cobra/helptemplate"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cmd"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cmd/canaryconfig"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cmd/environment"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cmd/function"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cmd/httptrigger"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cmd/kubewatch"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cmd/mqtrigger"
+	_package "github.com/fnlize/fnlize/pkg/fission-cli/cmd/package"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cmd/spec"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cmd/support"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cmd/timetrigger"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cmd/version"
+	"github.com/fnlize/fnlize/pkg/fission-cli/console"
+	"github.com/fnlize/fnlize/pkg/fission-cli/flag"
+	flagkey "github.com/fnlize/fnlize/pkg/fission-cli/flag/key"
+	"github.com/fnlize/fnlize/pkg/fission-cli/util"
+	_ "github.com/fnlize/fnlize/pkg/mqtrigger/messageQueue/azurequeuestorage"
+	_ "github.com/fnlize/fnlize/pkg/mqtrigger/messageQueue/kafka"
+	_ "github.com/fnlize/fnlize/pkg/mqtrigger/messageQueue/nats"
 )
 
 const (
 	usage = `Fission: Fast and Simple Serverless Functions for Kubernetes
 
- * Github: https://github.com/fission/fission 
+ * Github: https://github.com/fnlize/fnlize 
  * Documentation: https://docs.fission.io/docs
 `
 )

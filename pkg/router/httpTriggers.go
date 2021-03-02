@@ -30,11 +30,11 @@ import (
 	"k8s.io/client-go/rest"
 	k8sCache "k8s.io/client-go/tools/cache"
 
-	fv1 "github.com/fission/fission/pkg/apis/core/v1"
-	"github.com/fission/fission/pkg/crd"
-	executorClient "github.com/fission/fission/pkg/executor/client"
-	"github.com/fission/fission/pkg/throttler"
-	"github.com/fission/fission/pkg/utils"
+	fv1 "github.com/fnlize/fnlize/pkg/apis/core/v1"
+	"github.com/fnlize/fnlize/pkg/crd"
+	executorClient "github.com/fnlize/fnlize/pkg/executor/client"
+	"github.com/fnlize/fnlize/pkg/throttler"
+	"github.com/fnlize/fnlize/pkg/utils"
 )
 
 // HTTPTriggerSet represents an HTTP trigger set

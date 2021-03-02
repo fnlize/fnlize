@@ -9,13 +9,13 @@ is called (like `fission foo`). Fission will look in the PATH
 **Installing Fission**
 ```bash
 # The same as before
-$ curl -Lo fission https://github.com/fission/fission/releases/download/0.7.2/fission-cli-osx && chmod +x fission && sudo mv fission /usr/local/bin/
+$ curl -Lo fission https://github.com/fnlize/fnlize/releases/download/0.7.2/fission-cli-osx && chmod +x fission && sudo mv fission /usr/local/bin/
 ```
 
 **Installing Fission Workflows**
 ```bash
 # The same process as Fission cli itself
-$ curl -Lo fission https://github.com/fission/fission-workflows/releases/download/0.4.0/fission-workflows-osx && chmod +x fission-workflows && sudo mv fission-workflows /usr/local/bin/
+$ curl -Lo fission https://github.com/fnlize/fnlize-workflows/releases/download/0.4.0/fission-workflows-osx && chmod +x fission-workflows && sudo mv fission-workflows /usr/local/bin/
 ```
 
 **Invoking Fission Workflows**
@@ -100,7 +100,7 @@ a `requires` field to the fission-workflows plugin info. Then we could throw a w
 versions are being used. 
 - To avoid unhelpful errors to the user when they have not installed a plugin, we could add a heuristic to check 
 `https://github.com/fission/SUBCOMMAND` to see if the subcommand might be an uninstalled plugin. 
-OR, we could lookup a simple text file that contains common plugins `https://github.com/fission/fission/plugins.txt` 
+OR, we could lookup a simple text file that contains common plugins `https://github.com/fnlize/fnlize/plugins.txt` 
 and list them as suggestions to the user. OR we could of course just default to a bit help text that says something 
 like `unknown subcommand 'foo'. If this is a plugin, ensure that it is present on your PATH`.
 

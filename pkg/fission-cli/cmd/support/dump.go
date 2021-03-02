@@ -25,12 +25,12 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/fission/fission/pkg/fission-cli/cliwrapper/cli"
-	"github.com/fission/fission/pkg/fission-cli/cmd"
-	"github.com/fission/fission/pkg/fission-cli/cmd/support/resources"
-	flagkey "github.com/fission/fission/pkg/fission-cli/flag/key"
-	"github.com/fission/fission/pkg/fission-cli/util"
-	"github.com/fission/fission/pkg/utils"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cliwrapper/cli"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cmd"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cmd/support/resources"
+	flagkey "github.com/fnlize/fnlize/pkg/fission-cli/flag/key"
+	"github.com/fnlize/fnlize/pkg/fission-cli/util"
+	"github.com/fnlize/fnlize/pkg/utils"
 )
 
 const (

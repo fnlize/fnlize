@@ -20,9 +20,9 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	ferror "github.com/fission/fission/pkg/error"
+	ferror "github.com/fnlize/fnlize/pkg/error"
 
-	"github.com/fission/fission/pkg/controller/client/rest"
+	"github.com/fnlize/fnlize/pkg/controller/client/rest"
 )
 
 type (

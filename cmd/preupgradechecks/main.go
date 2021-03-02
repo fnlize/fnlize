@@ -23,7 +23,7 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 
-	"github.com/fission/fission/pkg/info"
+	"github.com/fnlize/fnlize/pkg/info"
 )
 
 func getStringArgWithDefault(arg interface{}, defaultValue string) string {

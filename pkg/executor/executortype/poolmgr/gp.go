@@ -26,7 +26,7 @@ import (
 	"time"
 
 	"github.com/dchest/uniuri"
-	"github.com/fission/fission/pkg/utils"
+	"github.com/fnlize/fnlize/pkg/utils"
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
 	appsv1 "k8s.io/api/apps/v1"
@@ -40,12 +40,12 @@ import (
 	"k8s.io/client-go/tools/cache"
 	"k8s.io/client-go/util/workqueue"
 
-	fv1 "github.com/fission/fission/pkg/apis/core/v1"
-	"github.com/fission/fission/pkg/crd"
-	"github.com/fission/fission/pkg/executor/fscache"
-	"github.com/fission/fission/pkg/executor/util"
-	fetcherClient "github.com/fission/fission/pkg/fetcher/client"
-	fetcherConfig "github.com/fission/fission/pkg/fetcher/config"
+	fv1 "github.com/fnlize/fnlize/pkg/apis/core/v1"
+	"github.com/fnlize/fnlize/pkg/crd"
+	"github.com/fnlize/fnlize/pkg/executor/fscache"
+	"github.com/fnlize/fnlize/pkg/executor/util"
+	fetcherClient "github.com/fnlize/fnlize/pkg/fetcher/client"
+	fetcherConfig "github.com/fnlize/fnlize/pkg/fetcher/config"
 )
 
 type (

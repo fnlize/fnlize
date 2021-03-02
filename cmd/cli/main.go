@@ -19,8 +19,8 @@ package main
 import (
 	"os"
 
-	"github.com/fission/fission/cmd/cli/app"
-	"github.com/fission/fission/pkg/fission-cli/console"
+	"github.com/fnlize/fnlize/cmd/cli/app"
+	"github.com/fnlize/fnlize/pkg/fission-cli/console"
 )
 
 func main() {

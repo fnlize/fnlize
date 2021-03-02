@@ -221,7 +221,7 @@ generate_changelog() {
 
 create_downloads_table () {
   local release_tag=$1
-  local url_prefix="https://github.com/fission/fission/releases/download"
+  local url_prefix="https://github.com/fnlize/fnlize/releases/download"
 
   echo "## Downloads for ${version}"
   echo
@@ -253,7 +253,7 @@ release_environment_check() {
 
   if [ ! -d $chartsrepo ]
   then
-     echo "Error finding chart repo at $GOPATH/src/github.com/fission/fission-charts"
+     echo "Error finding chart repo at $GOPATH/src/github.com/fnlize/fnlize-charts"
      exit 1
   fi
 
@@ -283,7 +283,7 @@ release_environment_check $version $chartsrepo
 # Here we mount docker.sock into container so that docker client can communicate with host docker daemon.
 # For more detail please visit https://docs.docker.com/machine/overview/
 docker run --rm -it -v $FISSION_HOME:/go/src/github.com/fission -v /var/run/docker.sock:/var/run/docker.sock \
-    -e VERSION=$version -w "/go/src/github.com/fission/fission/hack" fission-release-builder sh -c "./release-build.sh"
+    -e VERSION=$version -w "/go/src/github.com/fnlize/fnlize/hack" fission-release-builder sh -c "./release-build.sh"
 
 push_all $version
 

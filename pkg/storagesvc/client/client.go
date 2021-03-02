@@ -33,7 +33,7 @@ import (
 	"go.opencensus.io/plugin/ochttp"
 	"golang.org/x/net/context/ctxhttp"
 
-	"github.com/fission/fission/pkg/storagesvc"
+	"github.com/fnlize/fnlize/pkg/storagesvc"
 )
 
 type (

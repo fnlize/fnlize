@@ -20,12 +20,12 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/fission/fission/pkg/controller/client/rest"
+	"github.com/fnlize/fnlize/pkg/controller/client/rest"
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	fv1 "github.com/fission/fission/pkg/apis/core/v1"
-	ferror "github.com/fission/fission/pkg/error"
+	fv1 "github.com/fnlize/fnlize/pkg/apis/core/v1"
+	ferror "github.com/fnlize/fnlize/pkg/error"
 )
 
 type (

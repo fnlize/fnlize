@@ -54,9 +54,9 @@ import (
 	"go.opencensus.io/trace"
 	"go.uber.org/zap"
 
-	"github.com/fission/fission/pkg/crd"
-	executorClient "github.com/fission/fission/pkg/executor/client"
-	"github.com/fission/fission/pkg/throttler"
+	"github.com/fnlize/fnlize/pkg/crd"
+	executorClient "github.com/fnlize/fnlize/pkg/executor/client"
+	"github.com/fnlize/fnlize/pkg/throttler"
 )
 
 // request url ---[mux]---> Function(name,uid) ----[fmap]----> k8s service url
@@ -66,7 +66,7 @@ import (
 func router(ctx context.Context, logger *zap.Logger, httpTriggerSet *HTTPTriggerSet, resolver *functionReferenceResolver) *mutableRouter {
 	var mr *mutableRouter
 
-	// see issue https://github.com/fission/fission/issues/1317
+	// see issue https://github.com/fnlize/fnlize/issues/1317
 	useEncodedPath, _ := strconv.ParseBool(os.Getenv("USE_ENCODED_PATH"))
 	if useEncodedPath {
 		mr = newMutableRouter(logger, mux.NewRouter().UseEncodedPath())

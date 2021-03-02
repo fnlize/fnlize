@@ -31,16 +31,16 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"go.uber.org/zap"
 
-	fv1 "github.com/fission/fission/pkg/apis/core/v1"
-	"github.com/fission/fission/pkg/crd"
-	"github.com/fission/fission/pkg/executor/cms"
-	"github.com/fission/fission/pkg/executor/executortype"
-	"github.com/fission/fission/pkg/executor/executortype/newdeploy"
-	"github.com/fission/fission/pkg/executor/executortype/poolmgr"
-	"github.com/fission/fission/pkg/executor/fscache"
-	"github.com/fission/fission/pkg/executor/reaper"
-	"github.com/fission/fission/pkg/executor/util"
-	fetcherConfig "github.com/fission/fission/pkg/fetcher/config"
+	fv1 "github.com/fnlize/fnlize/pkg/apis/core/v1"
+	"github.com/fnlize/fnlize/pkg/crd"
+	"github.com/fnlize/fnlize/pkg/executor/cms"
+	"github.com/fnlize/fnlize/pkg/executor/executortype"
+	"github.com/fnlize/fnlize/pkg/executor/executortype/newdeploy"
+	"github.com/fnlize/fnlize/pkg/executor/executortype/poolmgr"
+	"github.com/fnlize/fnlize/pkg/executor/fscache"
+	"github.com/fnlize/fnlize/pkg/executor/reaper"
+	"github.com/fnlize/fnlize/pkg/executor/util"
+	fetcherConfig "github.com/fnlize/fnlize/pkg/fetcher/config"
 )
 
 type (

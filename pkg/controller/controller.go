@@ -20,7 +20,7 @@ import (
 	"context"
 	"go.uber.org/zap"
 
-	"github.com/fission/fission/pkg/crd"
+	"github.com/fnlize/fnlize/pkg/crd"
 )
 
 func Start(logger *zap.Logger, port int, unitTestFlag bool) {

@@ -28,11 +28,11 @@ import (
 	ns "github.com/nats-io/stan.go"
 	"go.uber.org/zap"
 
-	fv1 "github.com/fission/fission/pkg/apis/core/v1"
-	"github.com/fission/fission/pkg/mqtrigger/factory"
-	"github.com/fission/fission/pkg/mqtrigger/messageQueue"
-	"github.com/fission/fission/pkg/mqtrigger/validator"
-	"github.com/fission/fission/pkg/utils"
+	fv1 "github.com/fnlize/fnlize/pkg/apis/core/v1"
+	"github.com/fnlize/fnlize/pkg/mqtrigger/factory"
+	"github.com/fnlize/fnlize/pkg/mqtrigger/messageQueue"
+	"github.com/fnlize/fnlize/pkg/mqtrigger/validator"
+	"github.com/fnlize/fnlize/pkg/utils"
 )
 
 var natsClusterID string

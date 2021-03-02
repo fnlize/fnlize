@@ -20,8 +20,8 @@ import (
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
 
-	"github.com/fission/fission/pkg/crd"
-	"github.com/fission/fission/pkg/publisher"
+	"github.com/fnlize/fnlize/pkg/crd"
+	"github.com/fnlize/fnlize/pkg/publisher"
 )
 
 func Start(logger *zap.Logger, routerUrl string) error {

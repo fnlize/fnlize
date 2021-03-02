@@ -17,7 +17,7 @@ limitations under the License.
 package generator
 
 import (
-	"github.com/fission/fission/pkg/generator/encoder"
+	"github.com/fnlize/fnlize/pkg/generator/encoder"
 )
 
 type (

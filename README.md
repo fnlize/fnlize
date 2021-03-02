@@ -4,12 +4,12 @@
   <h1 align="center">Fission: Serverless Functions for Kubernetes</h1>
 </p>
 <p align="center">
-  <a href="https://github.com/fission/fission/actions?query=workflow%3A%22Fission+CI%22">
-    <img src="https://github.com/fission/fission/workflows/Fission%20CI/badge.svg?branch=master" alt="Build Status" />
+  <a href="https://github.com/fnlize/fnlize/actions?query=workflow%3A%22Fission+CI%22">
+    <img src="https://github.com/fnlize/fnlize/workflows/Fission%20CI/badge.svg?branch=master" alt="Build Status" />
   </a>
   
-  <a href="https://goreportcard.com/report/github.com/fission/fission">
-    <img src="https://goreportcard.com/badge/github.com/fission/fission" alt="Go Report Card" />
+  <a href="https://goreportcard.com/report/github.com/fnlize/fnlize">
+    <img src="https://goreportcard.com/badge/github.com/fnlize/fnlize" alt="Go Report Card" />
   </a>
   <a href="https://codecov.io/gh/fission/fission">
     <img src="https://codecov.io/gh/fission/fission/branch/master/graph/badge.svg" alt="codecov" />
@@ -92,7 +92,7 @@ Check out the [contributing guide](CONTRIBUTING.md).
 
 ## Get Help & Community Meeting 
 
-Fission is a project by [many contributors](https://github.com/fission/fission/graphs/contributors).
+Fission is a project by [many contributors](https://github.com/fnlize/fnlize/graphs/contributors).
 Reach us on [slack](https://join.slack.com/t/fissionio/shared_invite/enQtOTI3NjgyMjE5NzE3LTllODJiODBmYTBiYWUwMWQxZWRhNDhiZDMyN2EyNjAzMTFiYjE2Nzc1NzE0MTU4ZTg2MzVjMDQ1NWY3MGJhZmE) or [twitter](https://twitter.com/fissionio).
 
 A regular community meeting takes place every other Thursday at 09:00 AM PT (Pacific Time). [Convert to your local timezone](http://www.thetimezoneconverter.com/?t=09:00&tz=PT%20%28Pacific%20Time%29).
@@ -103,7 +103,7 @@ The meeting agenda for next meeting and notes from past meetings are maintained 
 
 ## Official Releases
 
-Official releases of Fission can be found on [the releases page](https://github.com/fission/fission/releases). 
+Official releases of Fission can be found on [the releases page](https://github.com/fnlize/fnlize/releases). 
 Please note that it is strongly recommended that you use official releases of Fission, as unreleased versions from 
 the master branch are subject to changes and incompatibilities that will not be supported in the official releases. 
 

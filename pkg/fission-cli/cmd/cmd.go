@@ -19,8 +19,8 @@ package cmd
 import (
 	"sync"
 
-	"github.com/fission/fission/pkg/controller/client"
-	"github.com/fission/fission/pkg/fission-cli/cliwrapper/cli"
+	"github.com/fnlize/fnlize/pkg/controller/client"
+	"github.com/fnlize/fnlize/pkg/fission-cli/cliwrapper/cli"
 )
 
 type (

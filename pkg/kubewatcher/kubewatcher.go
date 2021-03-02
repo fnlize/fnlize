@@ -35,10 +35,10 @@ import (
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/kubernetes"
 
-	fv1 "github.com/fission/fission/pkg/apis/core/v1"
-	ferror "github.com/fission/fission/pkg/error"
-	"github.com/fission/fission/pkg/publisher"
-	"github.com/fission/fission/pkg/utils"
+	fv1 "github.com/fnlize/fnlize/pkg/apis/core/v1"
+	ferror "github.com/fnlize/fnlize/pkg/error"
+	"github.com/fnlize/fnlize/pkg/publisher"
+	"github.com/fnlize/fnlize/pkg/utils"
 )
 
 type requestType int

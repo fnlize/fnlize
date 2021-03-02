@@ -34,11 +34,11 @@ import (
 	"go.uber.org/zap"
 	k8stypes "k8s.io/apimachinery/pkg/types"
 
-	fv1 "github.com/fission/fission/pkg/apis/core/v1"
-	ferror "github.com/fission/fission/pkg/error"
-	"github.com/fission/fission/pkg/error/network"
-	executorClient "github.com/fission/fission/pkg/executor/client"
-	"github.com/fission/fission/pkg/throttler"
+	fv1 "github.com/fnlize/fnlize/pkg/apis/core/v1"
+	ferror "github.com/fnlize/fnlize/pkg/error"
+	"github.com/fnlize/fnlize/pkg/error/network"
+	executorClient "github.com/fnlize/fnlize/pkg/executor/client"
+	"github.com/fnlize/fnlize/pkg/throttler"
 )
 
 const (
@@ -323,7 +323,7 @@ func (roundTripper RetryingRoundTripper) getDefaultTransport() *http.Transport {
 		TLSHandshakeTimeout:   10 * time.Second,
 		ExpectContinueTimeout: 1 * time.Second,
 		// Default disables caching, Please refer to issue and specifically comment:
-		// https://github.com/fission/fission/issues/723#issuecomment-398781995
+		// https://github.com/fnlize/fnlize/issues/723#issuecomment-398781995
 		// You can change it by setting environment variable "ROUTER_ROUND_TRIP_DISABLE_KEEP_ALIVE"
 		// of router or helm variable "disableKeepAlive" before installation to false.
 		DisableKeepAlives: roundTripper.funcHandler.tsRoundTripperParams.disableKeepAlive,

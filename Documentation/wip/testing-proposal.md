@@ -147,7 +147,7 @@ var fissionCli string
 
 BeforeSuite(func() {
     var err error
-    fissionCli, err = gexec.Build("github.com/fission/fission")
+    fissionCli, err = gexec.Build("github.com/fnlize/fnlize")
     Ω(err).ShouldNot(HaveOccurred())
 })
 

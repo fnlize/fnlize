@@ -12,7 +12,7 @@ This document documents the design and thoughts that lead to design of Java envi
     - Reactive has taken up recently with data intensive operations [Reactive extensions for JVM](https://github.com/ReactiveX/RxJava)
     - [Spark](http://sparkjava.com/) is a micro web framework
 
-A draft implementation of the Java environment design is in the branch [java_env_alpha](https://github.com/fission/fission/tree/java_env_alpha). Also a earlier implementation based on Vort.x framework [can be found here](https://github.com/tobias/fission-java-env/)
+A draft implementation of the Java environment design is in the branch [java_env_alpha](https://github.com/fnlize/fnlize/tree/java_env_alpha). Also a earlier implementation based on Vort.x framework [can be found here](https://github.com/tobias/fission-java-env/)
 
 ## Function interface
 
@@ -43,7 +43,7 @@ Also most enterprise applications today use a framework of some sort for web app
 
 A custom object which encapsulates all needed fields etc. can be used to pass the data from environment to the function. But this means the user has to import a Fission object/library for this object in the application code.
 
-This approach has been taken in the implementation done earlier for a Java environment in Fission and [object interface can be found here](https://github.com/tobias/fission-java-env/blob/master/src/main/java/io/fission/api/Context.java). Related discussion is in the [issue](https://github.com/fission/fission/issues/91)
+This approach has been taken in the implementation done earlier for a Java environment in Fission and [object interface can be found here](https://github.com/tobias/fission-java-env/blob/master/src/main/java/io/fission/api/Context.java). Related discussion is in the [issue](https://github.com/fnlize/fnlize/issues/91)
 
 AWS Lambda also uses a context object, but the purpose is very different, [details of context object here](https://docs.aws.amazon.com/lambda/latest/dg/java-context-object.html).
 
