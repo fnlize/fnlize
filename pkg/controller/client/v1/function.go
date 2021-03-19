@@ -64,7 +64,9 @@ func (c *Function) Create(f *fv1.Function) (*metav1.ObjectMeta, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func() {
+		var _ = resp.Body.Close()
+	}()
 
 	body, err := handleCreateResponse(resp)
 	if err != nil {
@@ -88,7 +90,9 @@ func (c *Function) Get(m *metav1.ObjectMeta) (*fv1.Function, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func() {
+		var _ = resp.Body.Close()
+	}()
 
 	body, err := handleResponse(resp)
 	if err != nil {
@@ -113,7 +117,9 @@ func (c *Function) GetRawDeployment(m *metav1.ObjectMeta) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func() {
+		var _ = resp.Body.Close()
+	}()
 
 	return handleResponse(resp)
 }
@@ -134,7 +140,9 @@ func (c *Function) Update(f *fv1.Function) (*metav1.ObjectMeta, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func() {
+		var _ = resp.Body.Close()
+	}()
 
 	body, err := handleResponse(resp)
 	if err != nil {
@@ -161,7 +169,9 @@ func (c *Function) List(functionNamespace string) ([]fv1.Function, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func() {
+		var _ = resp.Body.Close()
+	}()
 
 	body, err := handleResponse(resp)
 	if err != nil {

@@ -62,7 +62,7 @@ func specializeHandlerV2(logger *zap.Logger) func(http.ResponseWriter, *http.Req
 	return func(w http.ResponseWriter, r *http.Request) {
 		if specialized {
 			w.WriteHeader(http.StatusBadRequest)
-			w.Write([]byte("Not a generic container"))
+			var _, _ = w.Write([]byte("Not a generic container"))
 			return
 		}
 
@@ -104,13 +104,13 @@ func specializeHandlerV2(logger *zap.Logger) func(http.ResponseWriter, *http.Req
 			msg := "error getting absolute path of model"
 			logger.Error(msg, zap.Error(err))
 			w.WriteHeader(http.StatusInternalServerError)
-			w.Write([]byte(err.Error()))
+			var _, _ = w.Write([]byte(err.Error()))
 			return
 		} else if !strings.HasPrefix(basePath, loadreq.FilePath) {
 			msg := "incorrect model base path"
 			logger.Error(msg, zap.String("model_base_path", basePath))
 			w.WriteHeader(http.StatusInternalServerError)
-			w.Write([]byte(msg))
+			var _, _ = w.Write([]byte(msg))
 			return
 		}
 
@@ -146,7 +146,7 @@ func specializeHandlerV2(logger *zap.Logger) func(http.ResponseWriter, *http.Req
 			logger.Error(msg, zap.Error(err))
 			err = errors.Wrap(err, msg)
 			w.WriteHeader(http.StatusInternalServerError)
-			w.Write([]byte(err.Error()))
+			var _, _ = w.Write([]byte(err.Error()))
 			return
 		}
 
@@ -169,7 +169,7 @@ func specializeHandlerV2(logger *zap.Logger) func(http.ResponseWriter, *http.Req
 			}
 			conn, err := net.Dial("tcp", "localhost:8501")
 			if err == nil {
-				conn.Close()
+				var _ = conn.Close()
 				break
 			} else {
 				logger.Info(fmt.Sprintf("waiting for tensorflow serving to be ready: %v", err.Error()))
@@ -197,7 +197,9 @@ func main() {
 	if err != nil {
 		log.Fatalf("can't initialize zap logger: %v", err)
 	}
-	defer logger.Sync()
+	defer func() {
+		var _ = logger.Sync()
+	}()
 
 	http.HandleFunc("/healthz", readinessProbeHandler)
 	http.HandleFunc("/specialize", specializeHandler(logger.Named("specialize_handler")))
@@ -207,7 +209,7 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if !specialized {
 			w.WriteHeader(http.StatusInternalServerError)
-			w.Write([]byte("Generic container: no requests supported"))
+			var _, _ = w.Write([]byte("Generic container: no requests supported"))
 			return
 		}
 
@@ -227,5 +229,5 @@ func main() {
 	})
 
 	logger.Info("listening on 8888 ...")
-	http.ListenAndServe(":8888", nil)
+	var _ = http.ListenAndServe(":8888", nil)
 }

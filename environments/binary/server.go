@@ -47,7 +47,7 @@ type (
 func (bs *BinaryServer) SpecializeHandler(w http.ResponseWriter, r *http.Request) {
 	if specialized {
 		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("Not a generic container"))
+		var _, _ = w.Write([]byte("Not a generic container"))
 		return
 	}
 
@@ -78,7 +78,7 @@ func (bs *BinaryServer) SpecializeHandler(w http.ResponseWriter, r *http.Request
 	if err != nil {
 		if os.IsNotExist(err) {
 			w.WriteHeader(http.StatusNotFound)
-			w.Write([]byte(codePath + ": not found"))
+			var _, _ = w.Write([]byte(codePath + ": not found"))
 			return
 		} else {
 			panic(err)
@@ -91,13 +91,13 @@ func (bs *BinaryServer) SpecializeHandler(w http.ResponseWriter, r *http.Request
 	userFunc, err := ioutil.ReadFile(codePath)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("Failed to read executable."))
+		var _, _ = w.Write([]byte("Failed to read executable."))
 		return
 	}
 	err = ioutil.WriteFile(bs.internalCodePath, userFunc, 0555)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("Failed to write executable to target location."))
+		var _, _ = w.Write([]byte("Failed to write executable to target location."))
 		return
 	}
 
@@ -109,7 +109,7 @@ func (bs *BinaryServer) SpecializeHandler(w http.ResponseWriter, r *http.Request
 func (bs *BinaryServer) InvocationHandler(w http.ResponseWriter, r *http.Request) {
 	if !specialized {
 		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("Generic container: no requests supported"))
+		var _, _ = w.Write([]byte("Generic container: no requests supported"))
 		return
 	}
 
@@ -132,26 +132,26 @@ func (bs *BinaryServer) InvocationHandler(w http.ResponseWriter, r *http.Request
 		stdin, err := cmd.StdinPipe()
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
-			w.Write([]byte(fmt.Sprintf("Failed to get STDIN pipe: %s", err)))
+			var _, _ = w.Write([]byte(fmt.Sprintf("Failed to get STDIN pipe: %s", err)))
 			panic(err)
 		}
 		_, err = io.Copy(stdin, r.Body)
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
-			w.Write([]byte(fmt.Sprintf("Failed to pipe input: %s", err)))
+			var _, _ = w.Write([]byte(fmt.Sprintf("Failed to pipe input: %s", err)))
 		}
-		stdin.Close()
+		var _ = stdin.Close()
 	}
 
 	out, err := cmd.Output()
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte(fmt.Sprintf("Function error: %s", err)))
+		var _, _ = w.Write([]byte(fmt.Sprintf("Function error: %s", err)))
 		return
 	}
 
 	w.WriteHeader(http.StatusOK)
-	w.Write(out)
+	var _, _ = w.Write(out)
 }
 
 func main() {

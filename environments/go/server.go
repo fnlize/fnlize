@@ -21,7 +21,7 @@ import (
 )
 
 const (
-	CODE_PATH = "/userfunc/user"
+	CodePath = "/userfunc/user"
 )
 
 type (
@@ -95,33 +95,33 @@ func specializeHandler() func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if userFunc != nil {
 			w.WriteHeader(http.StatusBadRequest)
-			w.Write([]byte("Not a generic container"))
+			var _, _ = w.Write([]byte("Not a generic container"))
 			return
 		}
 
-		_, err := os.Stat(CODE_PATH)
+		_, err := os.Stat(CodePath)
 		if err != nil {
 			if os.IsNotExist(err) {
-				log.Printf("code path (%v) does not exist: %v", CODE_PATH, err)
+				log.Printf("code path (%v) does not exist: %v", CodePath, err)
 				w.WriteHeader(http.StatusNotFound)
-				w.Write([]byte(CODE_PATH + ": not found"))
+				var _, _ = w.Write([]byte(CodePath + ": not found"))
 				return
 			} else {
-				log.Printf("unknown error looking for code path(%v): %v", CODE_PATH, err)
+				log.Printf("unknown error looking for code path(%v): %v", CodePath, err)
 				err = fmt.Errorf("unknown error: %v", err)
 				w.WriteHeader(http.StatusInternalServerError)
-				w.Write([]byte(err.Error()))
+				var _, _ = w.Write([]byte(err.Error()))
 				return
 			}
 		}
 
 		log.Println("specializing ...")
-		userFunc, err = loadPlugin(CODE_PATH, "Handler")
+		userFunc, err = loadPlugin(CodePath, "Handler")
 		if err != nil {
 			err = fmt.Errorf("error specializing function: %v", err)
 			log.Println(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
-			w.Write([]byte(err.Error()))
+			var _, _ = w.Write([]byte(err.Error()))
 			return
 		}
 		log.Println("done")
@@ -132,7 +132,7 @@ func specializeHandlerV2() func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if userFunc != nil {
 			w.WriteHeader(http.StatusBadRequest)
-			w.Write([]byte("Not a generic container"))
+			var _, _ = w.Write([]byte("Not a generic container"))
 			return
 		}
 
@@ -154,13 +154,13 @@ func specializeHandlerV2() func(http.ResponseWriter, *http.Request) {
 			if os.IsNotExist(err) {
 				log.Printf("code path (%v) does not exist: %v", loadreq.FilePath, err)
 				w.WriteHeader(http.StatusNotFound)
-				w.Write([]byte(loadreq.FilePath + ": not found"))
+				var _, _ = w.Write([]byte(loadreq.FilePath + ": not found"))
 				return
 			} else {
 				log.Printf("unknown error looking for code path(%v): %v", loadreq.FilePath, err)
 				err = fmt.Errorf("unknown error: %v", err)
 				w.WriteHeader(http.StatusInternalServerError)
-				w.Write([]byte(err.Error()))
+				var _, _ = w.Write([]byte(err.Error()))
 				return
 			}
 		}
@@ -171,7 +171,7 @@ func specializeHandlerV2() func(http.ResponseWriter, *http.Request) {
 			err = fmt.Errorf("error specializing function: %v", err)
 			log.Println(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
-			w.Write([]byte(err.Error()))
+			var _, _ = w.Write([]byte(err.Error()))
 			return
 		}
 		log.Println("done")
@@ -192,12 +192,12 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if userFunc == nil {
 			w.WriteHeader(http.StatusInternalServerError)
-			w.Write([]byte("Generic container: no requests supported"))
+			var _, _ = w.Write([]byte("Generic container: no requests supported"))
 			return
 		}
 		userFunc(w, r)
 	})
 
 	log.Println("listening on 8888 ...")
-	http.ListenAndServe(":8888", nil)
+	var _ = http.ListenAndServe(":8888", nil)
 }

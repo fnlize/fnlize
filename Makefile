@@ -26,7 +26,7 @@ COMMIT := $(COMMIT)$(shell git diff-files --quiet || echo '-dirty')
 COMMIT := $(if $(COMMIT),$(COMMIT),"Unknown")
 
 .PHONY: check
-check: test-run build clean
+check: test-run build
 
 .PHONY: test-run
 test-run:
@@ -38,8 +38,8 @@ test-run:
 
 .PHONY: build
 build:
-	@for target in $(TARGETS); do                                   \
-		go build -v -o $(OUTPUT_DIR)/$${target}                       \
+	@for target in $(TARGETS); do                                       \
+		go build -v -o $(OUTPUT_DIR)/$${target}                         \
 			-ldflags "-s -w -X $(PKG)/pkg/version.Version=$(VERSION)    \
 			-X $(PKG)/pkg/version.Commit=$(COMMIT)                      \
 			-X $(PKG)/pkg/version.Package=$(PKG)"                       \
@@ -52,10 +52,10 @@ install: build
 
 .PHONY: image
 image:
-	@for target in $(TARGETS); do                                     \
-		image=$(IMAGE_PREFIX)$${target}$(IMAGE_SUFFIX);                 \
-		echo Building $${image}:$(VERSION);                             \
-		docker build -t $${image}:$(VERSION)                            \
+	@for target in $(TARGETS); do                                         \
+		image=$(IMAGE_PREFIX)$${target}$(IMAGE_SUFFIX);                   \
+		echo Building $${image}:$(VERSION);                               \
+		docker build -t $${image}:$(VERSION)                              \
 			--build-arg PKG=${PKG}                                        \
 			--build-arg GITCOMMIT=${COMMIT}                               \
 			--build-arg BUILDVERSION=${COMMIT}                            \

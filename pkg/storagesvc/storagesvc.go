@@ -65,13 +65,15 @@ func getStorageLocation(config *storageConfig) (stow.Location, error) {
 // Handle multipart file uploads.
 func (ss *StorageService) uploadHandler(w http.ResponseWriter, r *http.Request) {
 	// handle upload
-	r.ParseMultipartForm(0)
+	var _ = r.ParseMultipartForm(0)
 	file, handler, err := r.FormFile("uploadfile")
 	if err != nil {
 		http.Error(w, "missing upload file", http.StatusBadRequest)
 		return
 	}
-	defer file.Close()
+	defer func() {
+		var _ = file.Close()
+	}()
 
 	// stow wants the file size, but that's different from the
 	// content length, the content length being the size of the
@@ -121,7 +123,7 @@ func (ss *StorageService) uploadHandler(w http.ResponseWriter, r *http.Request) 
 		http.Error(w, "Error marshaling response", http.StatusInternalServerError)
 		return
 	}
-	w.Write(resp)
+	var _, _ = w.Write(resp)
 }
 
 func (ss *StorageService) getIdFromRequest(r *http.Request) (string, error) {
@@ -206,7 +208,7 @@ func (ss *StorageService) Start(port int) {
 
 // Start runs storage service
 func Start(logger *zap.Logger, storage Storage, port int) error {
-	enablePruner := true
+	//enablePruner := true
 	// create a storage client
 	storageClient, err := MakeStowClient(logger, storage)
 	if err != nil {
@@ -218,18 +220,18 @@ func Start(logger *zap.Logger, storage Storage, port int) error {
 	go storageService.Start(port)
 
 	// enablePruner prevents storagesvc unit test from needing to talk to kubernetes
-	if enablePruner {
-		// get the prune interval and start the archive pruner
-		pruneInterval, err := strconv.Atoi(os.Getenv("PRUNE_INTERVAL"))
-		if err != nil {
-			pruneInterval = defaultPruneInterval
-		}
-		pruner, err := MakeArchivePruner(logger, storageClient, time.Duration(pruneInterval))
-		if err != nil {
-			return errors.Wrap(err, "Error creating archivePruner")
-		}
-		go pruner.Start()
+	//if enablePruner {
+	// get the prune interval and start the archive pruner
+	pruneInterval, err := strconv.Atoi(os.Getenv("PRUNE_INTERVAL"))
+	if err != nil {
+		pruneInterval = defaultPruneInterval
 	}
+	pruner, err := MakeArchivePruner(logger, storageClient, time.Duration(pruneInterval))
+	if err != nil {
+		return errors.Wrap(err, "Error creating archivePruner")
+	}
+	go pruner.Start()
+	//}
 
 	logger.Info("storage service started")
 	return nil

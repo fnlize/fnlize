@@ -116,7 +116,7 @@ func writeSecretOrConfigMap(dataMap map[string][]byte, dirPath string) error {
 
 func (fetcher *Fetcher) VersionHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	w.Write([]byte(info.BuildInfo().String()))
+	var _, _ = w.Write([]byte(info.BuildInfo().String()))
 }
 
 func (fetcher *Fetcher) FetchHandler(w http.ResponseWriter, r *http.Request) {
@@ -506,7 +506,7 @@ func (fetcher *Fetcher) UploadHandler(w http.ResponseWriter, r *http.Request) {
 	fetcher.logger.Info("completed upload request")
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	w.Write(rBody)
+	var _, _ = w.Write(rBody)
 }
 
 func (fetcher *Fetcher) rename(src string, dst string) error {
@@ -630,7 +630,7 @@ func (fetcher *Fetcher) SpecializePod(ctx context.Context, fetchReq FunctionFetc
 		resp, err := http.Post(specializeURL, contentType, reader)
 		if err == nil && resp.StatusCode < 300 {
 			// Success
-			resp.Body.Close()
+			var _ = resp.Body.Close()
 			return nil
 		}
 

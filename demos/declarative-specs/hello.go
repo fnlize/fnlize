@@ -8,5 +8,5 @@ import (
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 	msg := "Hello, CNCF Webinar!\n"
-	w.Write([]byte(msg))
+	var _, _ = w.Write([]byte(msg))
 }

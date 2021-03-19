@@ -161,7 +161,7 @@ func (roundTripper *RetryingRoundTripper) RoundTrip(req *http.Request) (*http.Re
 	// close req body
 	defer func() {
 		if req.Body != nil {
-			req.Body.(*fakeCloseReadCloser).RealClose()
+			var _ = req.Body.(*fakeCloseReadCloser).RealClose()
 		}
 	}()
 
@@ -213,7 +213,9 @@ func (roundTripper *RetryingRoundTripper) RoundTrip(req *http.Request) (*http.Re
 			}
 			if roundTripper.funcHandler.function.Spec.InvokeStrategy.ExecutionStrategy.ExecutorType == fv1.ExecutorTypePoolmgr {
 				defer func(fn *fv1.Function, serviceURL *url.URL) {
-					go roundTripper.funcHandler.unTapService(fn, serviceURL) //nolint errcheck
+					go func() {
+						var _ = roundTripper.funcHandler.unTapService(fn, serviceURL) //nolint errcheck
+					}()
 				}(roundTripper.funcHandler.function, roundTripper.serviceURL)
 			}
 
@@ -281,7 +283,7 @@ func (roundTripper *RetryingRoundTripper) RoundTrip(req *http.Request) (*http.Re
 
 		// close response body before entering next loop
 		if resp != nil {
-			resp.Body.Close()
+			var _ = resp.Body.Close()
 		}
 
 		// Check whether an error is an timeout error ("dial tcp i/o timeout").
@@ -490,9 +492,9 @@ func (roundTripper RetryingRoundTripper) addForwardedHostHeader(req *http.Reques
 	// converts an IPv4 address to IPv6 format address and may
 	// cause router append wrong host value to header. To prevent
 	// this we need to check whether To4() is nil first.
-	if ip == nil || (ip != nil && ip.To4() != nil) {
+	if ip == nil || (ip.To4() != nil) {
 		host = fmt.Sprintf(`host=%s;`, req.Host)
-	} else if ip != nil && ip.To16() != nil {
+	} else if ip.To16() != nil {
 		// For the "Forwarded" header, if a host is an IPv6 address it should be quoted
 		host = fmt.Sprintf(`host="%s";`, req.Host)
 	}

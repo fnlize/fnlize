@@ -141,7 +141,9 @@ func (client *StowClient) copyFileToStream(fileId string, w io.Writer) error {
 	if err != nil {
 		return ErrOpeningItem
 	}
-	defer f.Close()
+	defer func() {
+		var _ = f.Close()
+	}()
 
 	_, err = io.Copy(w, f)
 	if err != nil {
@@ -171,7 +173,7 @@ func (client *StowClient) getItemIDsWithFilter(filterFunc filter, filterFuncPara
 	for {
 		items, cursor, err = client.container.Items(stow.NoPrefix, cursor, PaginationSize)
 		if err != nil {
-			errors.Wrap(err, "error getting items from container")
+			var _ = errors.Wrap(err, "error getting items from container")
 			return nil, err
 		}
 

@@ -81,7 +81,9 @@ func (pkgw *packageWatcher) build(buildCache *cache.Cache, srcpkg *fv1.Package) 
 	if err != nil {
 		return
 	}
-	defer buildCache.Delete(key)
+	defer func() {
+		var _ = buildCache.Delete(key)
+	}()
 
 	pkgw.logger.Info("starting build for package", zap.String("package_name", srcpkg.ObjectMeta.Name), zap.String("resource_version", srcpkg.ObjectMeta.ResourceVersion))
 
@@ -173,7 +175,7 @@ func (pkgw *packageWatcher) build(buildCache *cache.Cache, srcpkg *fv1.Package) 
 			uploadResp, buildLogs, err := buildPackage(ctx, pkgw.logger, pkgw.fissionClient, builderNs, pkgw.storageSvcUrl, pkg)
 			if err != nil {
 				pkgw.logger.Error("error building package", zap.Error(err), zap.String("package_name", pkg.ObjectMeta.Name))
-				updatePackage(pkgw.logger, pkgw.fissionClient, pkg, fv1.BuildStatusFailed, buildLogs, nil)
+				var _, _ = updatePackage(pkgw.logger, pkgw.fissionClient, pkg, fv1.BuildStatusFailed, buildLogs, nil)
 				return
 			}
 
@@ -185,7 +187,7 @@ func (pkgw *packageWatcher) build(buildCache *cache.Cache, srcpkg *fv1.Package) 
 				e := "error getting function list"
 				pkgw.logger.Error(e, zap.Error(err))
 				buildLogs += fmt.Sprintf("%s: %v\n", e, err)
-				updatePackage(pkgw.logger, pkgw.fissionClient, pkg, fv1.BuildStatusFailed, buildLogs, nil)
+				var _, _ = updatePackage(pkgw.logger, pkgw.fissionClient, pkg, fv1.BuildStatusFailed, buildLogs, nil)
 			}
 
 			// A package may be used by multiple functions. Update
@@ -201,7 +203,7 @@ func (pkgw *packageWatcher) build(buildCache *cache.Cache, srcpkg *fv1.Package) 
 						e := "error updating function package resource version"
 						pkgw.logger.Error(e, zap.Error(err))
 						buildLogs += fmt.Sprintf("%s: %v\n", e, err)
-						updatePackage(pkgw.logger, pkgw.fissionClient, pkg, fv1.BuildStatusFailed, buildLogs, nil)
+						var _, _ = updatePackage(pkgw.logger, pkgw.fissionClient, pkg, fv1.BuildStatusFailed, buildLogs, nil)
 						return
 					}
 				}
@@ -211,7 +213,7 @@ func (pkgw *packageWatcher) build(buildCache *cache.Cache, srcpkg *fv1.Package) 
 				fv1.BuildStatusSucceeded, buildLogs, uploadResp)
 			if err != nil {
 				pkgw.logger.Error("error updating package info", zap.Error(err), zap.String("package_name", pkg.ObjectMeta.Name))
-				updatePackage(pkgw.logger, pkgw.fissionClient, pkg, fv1.BuildStatusFailed, buildLogs, nil)
+				var _, _ = updatePackage(pkgw.logger, pkgw.fissionClient, pkg, fv1.BuildStatusFailed, buildLogs, nil)
 				return
 			}
 
@@ -221,7 +223,7 @@ func (pkgw *packageWatcher) build(buildCache *cache.Cache, srcpkg *fv1.Package) 
 		time.Sleep(healthCheckBackOff.GetNext())
 	}
 	// build timeout
-	updatePackage(pkgw.logger, pkgw.fissionClient, pkg,
+	var _, _ = updatePackage(pkgw.logger, pkgw.fissionClient, pkg,
 		fv1.BuildStatusFailed, "Build timeout due to environment builder not ready", nil)
 
 	pkgw.logger.Error("max retries exceeded in building source package, timeout due to environment builder not ready",

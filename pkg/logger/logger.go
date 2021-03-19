@@ -152,7 +152,7 @@ func symlinkReaper(zapLogger *zap.Logger) {
 			if target, e := os.Readlink(path); e == nil {
 				if _, pathErr := os.Stat(target); os.IsNotExist(pathErr) {
 					zapLogger.Debug("remove symlink file", zap.String("filepath", path))
-					os.Remove(path)
+					var _ = os.Remove(path)
 				}
 			}
 			return nil
@@ -170,7 +170,9 @@ func Start() {
 	if err != nil {
 		log.Fatalf("can't initialize zap logger: %v", err)
 	}
-	defer zapLogger.Sync()
+	defer func() {
+		var _ = zapLogger.Sync()
+	}()
 
 	if _, err := os.Stat(fissionSymlinkPath); os.IsNotExist(err) {
 		zapLogger.Info("symlink path not exist, create it",

@@ -55,7 +55,7 @@ func (ws *TimerSync) syncSvc() {
 			}
 			ws.logger.Fatal("failed to get time trigger list", zap.Error(err))
 		}
-		ws.timer.Sync(triggers.Items)
+		var _ = ws.timer.Sync(triggers.Items)
 
 		// TODO switch to watches
 		time.Sleep(3 * time.Second)

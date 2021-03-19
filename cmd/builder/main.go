@@ -34,7 +34,9 @@ func main() {
 	if err != nil {
 		log.Fatalf("can't initialize zap logger: %v", err)
 	}
-	defer logger.Sync()
+	defer func() {
+		var _ = logger.Sync()
+	}()
 
 	shareVolume := os.Args[1]
 	if _, err := os.Stat(shareVolume); err != nil {

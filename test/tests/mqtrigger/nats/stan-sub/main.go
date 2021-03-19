@@ -140,7 +140,7 @@ func main() {
 	} else if startDelta != "" {
 		ago, err := time.ParseDuration(startDelta)
 		if err != nil {
-			sc.Close()
+			var _ = sc.Close()
 			log.Fatal(err)
 		}
 		startOpt = stan.StartAtTimeDelta(ago)
@@ -174,9 +174,9 @@ func main() {
 			fmt.Printf("\nReceived an interrupt, unsubscribing and closing connection...\n\n")
 			// Do not unsubscribe a durable on exit, except if asked to.
 			if durable == "" || unsubscribe {
-				sub.Unsubscribe()
+				var _ = sub.Unsubscribe()
 			}
-			sc.Close()
+			var _ = sc.Close()
 			cleanupDone <- true
 		}
 	}()
