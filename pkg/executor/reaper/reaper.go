@@ -75,10 +75,10 @@ func CleanupDeployments(logger *zap.Logger, client *kubernetes.Clientset, instan
 		return err
 	}
 	for _, dep := range deploymentList.Items {
-		id, ok := dep.ObjectMeta.Annotations[fv1.EXECUTOR_INSTANCEID_LABEL]
+		id, ok := dep.ObjectMeta.Annotations[fv1.ExecutorInstanceLabel]
 		if !ok {
 			// Backward compatibility with older label name
-			id, ok = dep.ObjectMeta.Labels[fv1.EXECUTOR_INSTANCEID_LABEL]
+			id, ok = dep.ObjectMeta.Labels[fv1.ExecutorInstanceLabel]
 		}
 		if ok && id != instanceID {
 			logger.Info("cleaning up deployment", zap.String("deployment", dep.ObjectMeta.Name))
@@ -102,10 +102,10 @@ func CleanupPods(logger *zap.Logger, client *kubernetes.Clientset, instanceID st
 		return err
 	}
 	for _, pod := range podList.Items {
-		id, ok := pod.ObjectMeta.Annotations[fv1.EXECUTOR_INSTANCEID_LABEL]
+		id, ok := pod.ObjectMeta.Annotations[fv1.ExecutorInstanceLabel]
 		if !ok {
 			// Backward compatibility with older label name
-			id, ok = pod.ObjectMeta.Labels[fv1.EXECUTOR_INSTANCEID_LABEL]
+			id, ok = pod.ObjectMeta.Labels[fv1.ExecutorInstanceLabel]
 		}
 		if ok && id != instanceID {
 			logger.Info("cleaning up pod", zap.String("pod", pod.ObjectMeta.Name))
@@ -129,10 +129,10 @@ func CleanupServices(logger *zap.Logger, client *kubernetes.Clientset, instanceI
 		return err
 	}
 	for _, svc := range svcList.Items {
-		id, ok := svc.ObjectMeta.Annotations[fv1.EXECUTOR_INSTANCEID_LABEL]
+		id, ok := svc.ObjectMeta.Annotations[fv1.ExecutorInstanceLabel]
 		if !ok {
 			// Backward compatibility with older label name
-			id, ok = svc.ObjectMeta.Labels[fv1.EXECUTOR_INSTANCEID_LABEL]
+			id, ok = svc.ObjectMeta.Labels[fv1.ExecutorInstanceLabel]
 		}
 		if ok && id != instanceID {
 			logger.Info("cleaning up service", zap.String("service", svc.ObjectMeta.Name))
@@ -157,10 +157,10 @@ func CleanupHpa(logger *zap.Logger, client *kubernetes.Clientset, instanceID str
 	}
 
 	for _, hpa := range hpaList.Items {
-		id, ok := hpa.ObjectMeta.Annotations[fv1.EXECUTOR_INSTANCEID_LABEL]
+		id, ok := hpa.ObjectMeta.Annotations[fv1.ExecutorInstanceLabel]
 		if !ok {
 			// Backward compatibility with older label name
-			id, ok = hpa.ObjectMeta.Labels[fv1.EXECUTOR_INSTANCEID_LABEL]
+			id, ok = hpa.ObjectMeta.Labels[fv1.ExecutorInstanceLabel]
 		}
 		if ok && id != instanceID {
 			logger.Info("cleaning up HPA", zap.String("hpa", hpa.ObjectMeta.Name))

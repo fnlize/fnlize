@@ -296,8 +296,6 @@ github.com/nats-io/stan.go/pb
 # github.com/nwaples/rardecode v0.0.0-20171029023500-e06696f847ae
 ## explicit
 github.com/nwaples/rardecode
-# github.com/nxadm/tail v1.4.8
-## explicit
 # github.com/onsi/ginkgo v1.15.2
 ## explicit
 # github.com/opencontainers/go-digest v1.0.0

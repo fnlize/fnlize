@@ -147,17 +147,17 @@ func MakeGenericPool(
 
 func (gp *GenericPool) getEnvironmentPoolLabels() map[string]string {
 	return map[string]string{
-		fv1.EXECUTOR_TYPE:         string(fv1.ExecutorTypePoolmgr),
-		fv1.ENVIRONMENT_NAME:      gp.env.ObjectMeta.Name,
-		fv1.ENVIRONMENT_NAMESPACE: gp.env.ObjectMeta.Namespace,
-		fv1.ENVIRONMENT_UID:       string(gp.env.ObjectMeta.UID),
-		"managed":                 "true", // this allows us to easily find pods managed by the deployment
+		fv1.EXECUTOR_TYPE:        string(fv1.ExecutorTypePoolmgr),
+		fv1.EnvironmentName:      gp.env.ObjectMeta.Name,
+		fv1.EnvironmentNamespace: gp.env.ObjectMeta.Namespace,
+		fv1.EnvironmentUid:       string(gp.env.ObjectMeta.UID),
+		"managed":                "true", // this allows us to easily find pods managed by the deployment
 	}
 }
 
 func (gp *GenericPool) getDeployAnnotations() map[string]string {
 	return map[string]string{
-		fv1.EXECUTOR_INSTANCEID_LABEL: gp.instanceID,
+		fv1.ExecutorInstanceLabel: gp.instanceID,
 	}
 }
 
@@ -250,10 +250,10 @@ func (gp *GenericPool) choosePod(newLabels map[string]string) (string, *apiv1.Po
 
 func (gp *GenericPool) labelsForFunction(metadata *metav1.ObjectMeta) map[string]string {
 	label := gp.getEnvironmentPoolLabels()
-	label[fv1.FUNCTION_NAME] = metadata.Name
-	label[fv1.FUNCTION_UID] = string(metadata.UID)
-	label[fv1.FUNCTION_NAMESPACE] = metadata.Namespace // function CRD must stay within same namespace of environment CRD
-	label["managed"] = "false"                         // this allows us to easily find pods not managed by the deployment
+	label[fv1.FunctionName] = metadata.Name
+	label[fv1.FunctionUid] = string(metadata.UID)
+	label[fv1.FunctionNamespace] = metadata.Namespace // function CRD must stay within same namespace of environment CRD
+	label["managed"] = "false"                        // this allows us to easily find pods not managed by the deployment
 	return label
 }
 
@@ -462,8 +462,8 @@ func (gp *GenericPool) createPool() error {
 
 	depl, err := gp.kubernetesClient.AppsV1().Deployments(gp.namespace).Get(deployment.Name, metav1.GetOptions{})
 	if err == nil {
-		if depl.Annotations[fv1.EXECUTOR_INSTANCEID_LABEL] != gp.instanceID {
-			deployment.Annotations[fv1.EXECUTOR_INSTANCEID_LABEL] = gp.instanceID
+		if depl.Annotations[fv1.ExecutorInstanceLabel] != gp.instanceID {
+			deployment.Annotations[fv1.ExecutorInstanceLabel] = gp.instanceID
 			// Update with the latest deployment spec. Kubernetes will trigger
 			// rolling update if spec is different from the one in the cluster.
 			depl, err = gp.kubernetesClient.AppsV1().Deployments(gp.namespace).Update(deployment)
@@ -600,7 +600,7 @@ func (gp *GenericPool) getFuncSvc(ctx context.Context, fn *fv1.Function) (*fscac
 
 	// patch svc-host and resource version to the pod annotations for new executor to adopt the pod
 	patch := fmt.Sprintf(`{"metadata":{"annotations":{"%v":"%v","%v":"%v"}}}`,
-		fv1.ANNOTATION_SVC_HOST, svcHost, fv1.FUNCTION_RESOURCE_VERSION, fn.ObjectMeta.ResourceVersion)
+		fv1.AnnotationSvcHost, svcHost, fv1.FunctionResourceVersion, fn.ObjectMeta.ResourceVersion)
 	p, err := gp.kubernetesClient.CoreV1().Pods(pod.Namespace).Patch(pod.Name, k8sTypes.StrategicMergePatchType, []byte(patch))
 	if err != nil {
 		// just log the error since it won't affect the function serving

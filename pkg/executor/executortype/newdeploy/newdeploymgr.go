@@ -764,20 +764,20 @@ func (deploy *NewDeploy) getObjName(fn *fv1.Function) string {
 
 func (deploy *NewDeploy) getDeployLabels(fnMeta metav1.ObjectMeta, envMeta metav1.ObjectMeta) map[string]string {
 	return map[string]string{
-		fv1.EXECUTOR_TYPE:         string(fv1.ExecutorTypeNewdeploy),
-		fv1.ENVIRONMENT_NAME:      envMeta.Name,
-		fv1.ENVIRONMENT_NAMESPACE: envMeta.Namespace,
-		fv1.ENVIRONMENT_UID:       string(envMeta.UID),
-		fv1.FUNCTION_NAME:         fnMeta.Name,
-		fv1.FUNCTION_NAMESPACE:    fnMeta.Namespace,
-		fv1.FUNCTION_UID:          string(fnMeta.UID),
+		fv1.EXECUTOR_TYPE:        string(fv1.ExecutorTypeNewdeploy),
+		fv1.EnvironmentName:      envMeta.Name,
+		fv1.EnvironmentNamespace: envMeta.Namespace,
+		fv1.EnvironmentUid:       string(envMeta.UID),
+		fv1.FunctionName:         fnMeta.Name,
+		fv1.FunctionNamespace:    fnMeta.Namespace,
+		fv1.FunctionUid:          string(fnMeta.UID),
 	}
 }
 
 func (deploy *NewDeploy) getDeployAnnotations(fnMeta metav1.ObjectMeta) map[string]string {
 	return map[string]string{
-		fv1.EXECUTOR_INSTANCEID_LABEL: deploy.instanceID,
-		fv1.FUNCTION_RESOURCE_VERSION: fnMeta.ResourceVersion,
+		fv1.ExecutorInstanceLabel:   deploy.instanceID,
+		fv1.FunctionResourceVersion: fnMeta.ResourceVersion,
 	}
 }
 

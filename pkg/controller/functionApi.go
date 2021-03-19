@@ -306,9 +306,9 @@ func (a *API) FunctionPodLogs(w http.ResponseWriter, r *http.Request) {
 
 	// Get function Pods first
 	selector := map[string]string{
-		fv1.FUNCTION_UID:          string(f.ObjectMeta.UID),
-		fv1.ENVIRONMENT_NAME:      f.Spec.Environment.Name,
-		fv1.ENVIRONMENT_NAMESPACE: f.Spec.Environment.Namespace,
+		fv1.FunctionUid:          string(f.ObjectMeta.UID),
+		fv1.EnvironmentName:      f.Spec.Environment.Name,
+		fv1.EnvironmentNamespace: f.Spec.Environment.Namespace,
 	}
 	podList, err := a.kubernetesClient.CoreV1().Pods(podNs).List(metav1.ListOptions{
 		LabelSelector: labels.Set(selector).AsSelector().String(),

@@ -17,8 +17,8 @@ limitations under the License.
 package v1
 
 const (
-	EXECUTOR_INSTANCEID_LABEL string = "executorInstanceId"
-	DEFAULT_FUNCTION_TIMEOUT  int    = 60
+	ExecutorInstanceLabel  string = "executorInstanceId"
+	DefaultFunctionTimeout int    = 60
 )
 
 const (
@@ -114,18 +114,18 @@ const (
 
 // executor kubernetes object label key
 const (
-	ENVIRONMENT_NAMESPACE     = "environmentNamespace"
-	ENVIRONMENT_NAME          = "environmentName"
-	ENVIRONMENT_UID           = "environmentUid"
-	FUNCTION_NAMESPACE        = "functionNamespace"
-	FUNCTION_NAME             = "functionName"
-	FUNCTION_UID              = "functionUid"
-	FUNCTION_RESOURCE_VERSION = "functionResourceVersion"
-	EXECUTOR_TYPE             = "executorType"
+	EnvironmentNamespace    = "environmentNamespace"
+	EnvironmentName         = "environmentName"
+	EnvironmentUid          = "environmentUid"
+	FunctionNamespace       = "functionNamespace"
+	FunctionName            = "functionName"
+	FunctionUid             = "functionUid"
+	FunctionResourceVersion = "functionResourceVersion"
+	EXECUTOR_TYPE           = "executorType"
 )
 
 const (
-	ANNOTATION_SVC_HOST = "svcHost"
+	AnnotationSvcHost = "svcHost"
 )
 
 const (

@@ -391,7 +391,7 @@ func (fh functionHandler) handler(responseWriter http.ResponseWriter, request *h
 
 	fnTimeout := fh.functionTimeoutMap[fh.function.ObjectMeta.GetUID()]
 	if fnTimeout == 0 {
-		fnTimeout = fv1.DEFAULT_FUNCTION_TIMEOUT
+		fnTimeout = fv1.DefaultFunctionTimeout
 	}
 
 	rrt := &RetryingRoundTripper{

@@ -56,7 +56,7 @@ func makePodLoggerController(zapLogger *zap.Logger, k8sClientSet *kubernetes.Cli
 				}
 				err := createLogSymlinks(zapLogger, pod)
 				if err != nil {
-					funcName := pod.Labels[fv1.FUNCTION_NAME]
+					funcName := pod.Labels[fv1.FunctionName]
 					zapLogger.Error("error creating symlink",
 						zap.String("function", funcName), zap.Error(err))
 				}
@@ -68,7 +68,7 @@ func makePodLoggerController(zapLogger *zap.Logger, k8sClientSet *kubernetes.Cli
 				}
 				err := createLogSymlinks(zapLogger, pod)
 				if err != nil {
-					funcName := pod.Labels[fv1.FUNCTION_NAME]
+					funcName := pod.Labels[fv1.FunctionName]
 					zapLogger.Error("error creating symlink",
 						zap.String("function", funcName), zap.Error(err))
 				}
@@ -116,8 +116,8 @@ func isValidFunctionPodOnNode(pod *corev1.Pod) bool {
 	if pod.Spec.NodeName != nodeName {
 		return false
 	}
-	labels := []string{fv1.ENVIRONMENT_NAMESPACE, fv1.ENVIRONMENT_NAME, fv1.ENVIRONMENT_UID,
-		fv1.FUNCTION_NAMESPACE, fv1.FUNCTION_NAME, fv1.FUNCTION_UID, fv1.EXECUTOR_TYPE}
+	labels := []string{fv1.EnvironmentNamespace, fv1.EnvironmentName, fv1.EnvironmentUid,
+		fv1.FunctionNamespace, fv1.FunctionName, fv1.FunctionUid, fv1.EXECUTOR_TYPE}
 	for _, l := range labels {
 		if len(pod.Labels[l]) == 0 {
 			return false

@@ -312,7 +312,7 @@ func (gpm *GenericPoolManager) AdoptExistingResources() {
 			// avoid too many requests arrive Kubernetes API server at the same time.
 			time.Sleep(time.Duration(rand.Intn(30)) * time.Millisecond)
 
-			patch := fmt.Sprintf(`{"metadata":{"annotations":{"%v":"%v"}}}`, fv1.EXECUTOR_INSTANCEID_LABEL, gpm.instanceID)
+			patch := fmt.Sprintf(`{"metadata":{"annotations":{"%v":"%v"}}}`, fv1.ExecutorInstanceLabel, gpm.instanceID)
 			pod, err = gpm.kubernetesClient.CoreV1().Pods(pod.Namespace).Patch(pod.Name, k8sTypes.StrategicMergePatchType, []byte(patch))
 			if err != nil {
 				// just log the error since it won't affect the function serving
@@ -326,13 +326,13 @@ func (gpm *GenericPoolManager) AdoptExistingResources() {
 				return
 			}
 
-			fnName, ok1 := pod.Labels[fv1.FUNCTION_NAME]
-			fnNS, ok2 := pod.Labels[fv1.FUNCTION_NAMESPACE]
-			fnUID, ok3 := pod.Labels[fv1.FUNCTION_UID]
-			fnRV, ok4 := pod.Annotations[fv1.FUNCTION_RESOURCE_VERSION]
-			envName, ok5 := pod.Labels[fv1.ENVIRONMENT_NAME]
-			envNS, ok6 := pod.Labels[fv1.ENVIRONMENT_NAMESPACE]
-			svcHost, ok7 := pod.Annotations[fv1.ANNOTATION_SVC_HOST]
+			fnName, ok1 := pod.Labels[fv1.FunctionName]
+			fnNS, ok2 := pod.Labels[fv1.FunctionNamespace]
+			fnUID, ok3 := pod.Labels[fv1.FunctionUid]
+			fnRV, ok4 := pod.Annotations[fv1.FunctionResourceVersion]
+			envName, ok5 := pod.Labels[fv1.EnvironmentName]
+			envNS, ok6 := pod.Labels[fv1.EnvironmentNamespace]
+			svcHost, ok7 := pod.Annotations[fv1.AnnotationSvcHost]
 			env, ok8 := envMap[fmt.Sprintf("%v/%v", envNS, envName)]
 
 			if !(ok1 && ok2 && ok3 && ok4 && ok5 && ok6 && ok7 && ok8) {

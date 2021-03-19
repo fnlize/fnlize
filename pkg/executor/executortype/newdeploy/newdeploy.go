@@ -65,7 +65,7 @@ func (deploy *NewDeploy) createOrGetDeployment(fn *fv1.Function, env *fv1.Enviro
 	existingDepl, err := deploy.kubernetesClient.AppsV1().Deployments(deployNamespace).Get(deployName, metav1.GetOptions{})
 	if err == nil {
 		// Try to adopt orphan deployment created by the old executor.
-		if existingDepl.Annotations[fv1.EXECUTOR_INSTANCEID_LABEL] != deploy.instanceID {
+		if existingDepl.Annotations[fv1.ExecutorInstanceLabel] != deploy.instanceID {
 			existingDepl.Annotations = deployment.Annotations
 			existingDepl.Labels = deployment.Labels
 			existingDepl.Spec.Template.Spec.Containers = deployment.Spec.Template.Spec.Containers
@@ -402,7 +402,7 @@ func (deploy *NewDeploy) createOrGetHpa(hpaName string, execStrategy *fv1.Execut
 	existingHpa, err := deploy.kubernetesClient.AutoscalingV1().HorizontalPodAutoscalers(depl.ObjectMeta.Namespace).Get(hpaName, metav1.GetOptions{})
 	if err == nil {
 		// to adopt orphan service
-		if existingHpa.Annotations[fv1.EXECUTOR_INSTANCEID_LABEL] != deploy.instanceID {
+		if existingHpa.Annotations[fv1.ExecutorInstanceLabel] != deploy.instanceID {
 			existingHpa.Annotations = hpa.Annotations
 			existingHpa.Labels = hpa.Labels
 			existingHpa.Spec = hpa.Spec
@@ -465,7 +465,7 @@ func (deploy *NewDeploy) createOrGetSvc(deployLabels map[string]string, deployAn
 	existingSvc, err := deploy.kubernetesClient.CoreV1().Services(svcNamespace).Get(svcName, metav1.GetOptions{})
 	if err == nil {
 		// to adopt orphan service
-		if existingSvc.Annotations[fv1.EXECUTOR_INSTANCEID_LABEL] != deploy.instanceID {
+		if existingSvc.Annotations[fv1.ExecutorInstanceLabel] != deploy.instanceID {
 			existingSvc.Annotations = service.Annotations
 			existingSvc.Labels = service.Labels
 			existingSvc.Spec.Ports = service.Spec.Ports

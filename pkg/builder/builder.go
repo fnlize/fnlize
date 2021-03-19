@@ -74,7 +74,7 @@ func MakeBuilder(logger *zap.Logger, sharedVolumePath string) *Builder {
 
 func (builder *Builder) VersionHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	w.Write([]byte(info.BuildInfo().String()))
+	var _, _ = w.Write([]byte(info.BuildInfo().String()))
 }
 
 func (builder *Builder) Handler(w http.ResponseWriter, r *http.Request) {
@@ -149,7 +149,7 @@ func (builder *Builder) reply(w http.ResponseWriter, pkgFilename string, buildLo
 	// should write header before writing the body,
 	// or client will receive HTTP 200 regardless the real status code
 	w.WriteHeader(statusCode)
-	w.Write(rBody)
+	var _, _ = w.Write(rBody)
 }
 
 func (builder *Builder) build(command string, srcPkgPath string, deployPkgPath string) (string, error) {

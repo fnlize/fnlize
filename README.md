@@ -35,16 +35,16 @@ PHP, Bash, and any Linux executable, with more languages coming soon.
 Table of Contents
 =================
 
-   * [Fission: Serverless Functions for Kubernetes](#fission-serverless-functions-for-kubernetes)
-      * [Performance: 100msec cold start](#performance-100msec-cold-start)
-      * [Kubernetes is the right place for Serverless](#kubernetes-is-the-right-place-for-serverless)
-      * [Getting Started](#getting-started)
-      * [Learn More](#learn-more)
-      * [Contributing](#contributing)
-      * [Get Help &amp; Community Meeting](#get-help--community-meeting)
-      * [Official Releases](#official-releases)
-      * [Sponsors](#sponsors)
-   * [Licensing](#licensing)
+* [Fission: Serverless Functions for Kubernetes](#fission-serverless-functions-for-kubernetes)
+  * [Performance: 100msec cold start](#performance-100msec-cold-start)
+  * [Kubernetes is the right place for Serverless](#kubernetes-is-the-right-place-for-serverless)
+  * [Getting Started](#getting-started)
+  * [Learn More](#learn-more)
+  * [Contributing](#contributing)
+  * [Get Help &amp; Community Meeting](#get-help--community-meeting)
+  * [Official Releases](#official-releases)
+  * [Sponsors](#sponsors)
+* [Licensing](#licensing)
 
 ## Performance: 100msec cold start
 
@@ -90,35 +90,12 @@ aggregation &mdash; also helps with ops on your Fission deployment.
 
 Check out the [contributing guide](CONTRIBUTING.md).
 
-## Get Help & Community Meeting 
-
-Fission is a project by [many contributors](https://github.com/fnlize/fnlize/graphs/contributors).
-Reach us on [slack](https://join.slack.com/t/fissionio/shared_invite/enQtOTI3NjgyMjE5NzE3LTllODJiODBmYTBiYWUwMWQxZWRhNDhiZDMyN2EyNjAzMTFiYjE2Nzc1NzE0MTU4ZTg2MzVjMDQ1NWY3MGJhZmE) or [twitter](https://twitter.com/fissionio).
-
-A regular community meeting takes place every other Thursday at 09:00 AM PT (Pacific Time). [Convert to your local timezone](http://www.thetimezoneconverter.com/?t=09:00&tz=PT%20%28Pacific%20Time%29).
-
-Meeting Link: https://zoom.us/j/413921817 
-
-The meeting agenda for next meeting and notes from past meetings are maintained in [this document](https://docs.google.com/document/d/1E-xw4KJgka4sUpETHxr9BJBYntzrtxlAN_CE3Wt8kws). You are welcome to join to discuss direction of project, design and implementation reviews and general questions about project etc.
-
 ## Official Releases
 
-Official releases of Fission can be found on [the releases page](https://github.com/fnlize/fnlize/releases). 
-Please note that it is strongly recommended that you use official releases of Fission, as unreleased versions from 
-the master branch are subject to changes and incompatibilities that will not be supported in the official releases. 
+Official releases of Fission can be found on [the releases page](https://github.com/fnlize/fnlize/releases).
+Please note that it is strongly recommended that you use official releases of Fission, as unreleased versions from
+the master branch are subject to changes and incompatibilities that will not be supported in the official releases.
 
-## Sponsors
-
-The following companies, organizations, and individuals support Fission's ongoing maintenance and development. If you are using/contributing to Fission, we would be happy to list you here, please raise a Pull request.
-
-<p>
-    <a href="https://infracloud.io/"><img src="https://fission.io/sponsors/infracloud.png" alt="InfraCloud" height="70"></a>
-    <a href="https://srcmesh.com/"><img src="https://fission.io/sponsors/srcmesh.png" alt="Srcmesh" height="70"></a>
-    <a href="https://www.digitalocean.com/?utm_medium=opensource&utm_source=fissionio">
-      <img src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/PoweredByDO/DO_Powered_by_Badge_blue.svg" width="201px">
-    </a>
-</p>
-
-# Licensing
+## Licensing
 
 Fission is under the Apache 2.0 license.
