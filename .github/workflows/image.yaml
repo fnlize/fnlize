@@ -1,4 +1,4 @@
-name: Server Build Image
+name: Fnlize Image Build
 
 on:
   push:

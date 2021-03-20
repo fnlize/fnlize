@@ -1,0 +1,32 @@
+name: Fnlize install
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  fnlize-install:
+    name: fnlize install
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Installing skaffold
+        run: |
+          curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
+          sudo install -m 755 skaffold /usr/bin/
+          rm skaffold
+      - name: Helm repo
+        run: helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+      - name: Kubernetes cluster
+        run: |
+          minikube start
+      - name: Install application
+        run: |
+          skaffold run -p kind-ci

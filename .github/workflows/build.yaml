@@ -1,4 +1,4 @@
-name: Server Build CI
+name: Fnlize Build
 
 on:
   push:
