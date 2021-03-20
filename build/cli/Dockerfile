@@ -1,4 +1,4 @@
-FROM golang:alpine as builder
+FROM golang:1.16-alpine3.13  as builder
 
 ARG PKG=${PKG}
 ARG GITCOMMIT=${GITCOMMIT}
@@ -10,19 +10,20 @@ WORKDIR /go/src/${PKG}
 
 COPY . .
 
-RUN cd /go/src/${PKG}/cmd/${TARGET} && \
-    CGO_ENABLED=0 go build -v \
-    -o /go/bin/${TARGET} \
-    -ldflags "-X ${PKG}/pkg/info.GitCommit=${GITCOMMIT} \
-    -X ${PKG}/pkg/info.BuildDate=${BUILDDATE} \
-    -X ${PKG}/pkg/info.Version=${BUILDVERSION}"
+ENV CGO_ENABLED=0
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+
+RUN apk add --no-cache make git && \
+    env TARGETS=${TARGET} make build && cp bin/${TARGET} /go/bin/${TARGET}
 
 FROM alpine:3.13
 
 ARG TARGET=${TARGET}
 
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
-    apk add --no-cache ca-certificates
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+
+RUN apk add --no-cache ca-certificates
 
 COPY --from=builder /go/bin/${TARGET} /usr/local/bin/fission
 
