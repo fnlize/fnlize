@@ -43,7 +43,6 @@ Table of Contents
   * [Contributing](#contributing)
   * [Get Help &amp; Community Meeting](#get-help--community-meeting)
   * [Official Releases](#official-releases)
-  * [Sponsors](#sponsors)
 * [Licensing](#licensing)
 
 ## Performance: 100msec cold start
@@ -68,15 +67,19 @@ aggregation &mdash; also helps with ops on your Fission deployment.
 ## Getting Started
 
 ```bash
+  $ minikube start
+
+  $ skaffold run
+
   # Add the stock NodeJS env to your Fission deployment
   $ fission env create --name nodejs --image fission/node-env
 
   # Create a function with a javascript one-liner that prints "hello world"
   $ fission function create --name hello --env nodejs --code https://raw.githubusercontent.com/fission/fission/master/examples/nodejs/hello.js
 
-  # Run the function.  This takes about 100msec the first time.
+  # Run the function. This takes about 100msec the first time.
   $ fission function test --name hello
-  Hello, world!
+  # > Hello, world!
 ```
 
 ## Learn More

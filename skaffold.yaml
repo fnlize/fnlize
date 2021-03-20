@@ -10,33 +10,34 @@
 # For building & deploying to Kind cluster use Kind profile
 # $ `skaffold run -p kind`
 ####################################
-apiVersion: skaffold/v2beta4
+apiVersion: skaffold/v2beta13
 kind: Config
 build:
   artifacts:
     - image: fission
       context: .
       docker:
-        dockerfile: cmd/fission-bundle/Dockerfile.fission-bundle
+        dockerfile: build/bundle/Dockerfile
+        buildArgs:
+          TARGET: bundle
+          PKG: github.com/fnlize/fnlize
     - image: fetcher
       docker:
-        dockerfile: cmd/fetcher/Dockerfile.fission-fetcher
+        dockerfile: build/fetcher/Dockerfile
+        buildArgs:
+          TARGET: fetcher
+          PKG: github.com/fnlize/fnlize
     - image: preupgradechecks
       docker:
-        dockerfile: cmd/preupgradechecks/Dockerfile.fission-preupgradechecks
+        dockerfile: build/preupgradechecks/Dockerfile
+        buildArgs:
+          TARGET: preupgradechecks
+          PKG: github.com/fnlize/fnlize
 
 deploy:
   helm:
     flags:
-      upgrade:
-        [
-          "--timeout=3m",
-          "--install",
-          "--dependency-update",
-          "--force",
-          "--debug",
-        ]
-      install: ["--timeout=3m", "--debug", "--dependency-update"]
+      install: ["--timeout=3m", "--debug", "--create-namespace"]
     releases:
       - name: fission
         chartPath: ./charts/fission-all

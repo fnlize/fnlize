@@ -117,7 +117,7 @@ spec:
                 fieldRef:
                   apiVersion: v1
                   fieldPath: spec.nodeName
-          command: ["/fission-bundle"]
+          command: ["bundle"]
           args: ["--logger"]
           volumeMounts:
             - name: container-log

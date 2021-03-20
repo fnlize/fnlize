@@ -1,15 +1,13 @@
 apiVersion: v1
 name: fission-all
 version: 1.11.2
-description: Fission is a fast serverless framework for Kubernetes.
+appVersion: 1.11.2
+description: Fnlize is a fast serverless framework for Kubernetes.
 keywords:
-- fission
-- serverless
+  - fnlize
+  - serverless
 home: http://fission.io/
 maintainers:
-  - name: Soam Vasani
-    email: soamvasani+1@gmail.com
-  - name: Ta Ching Chen
-    email: hello@tachingchen.com
+  - name: Tosone
+    email: i@tosone.cn
 engine: gotpl
-appVersion: 1.11.2

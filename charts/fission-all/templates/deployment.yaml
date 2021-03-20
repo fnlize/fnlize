@@ -136,7 +136,7 @@ spec:
       - name: controller
         image: {{ include "fission-bundleImage" . | quote }}
         imagePullPolicy: {{ .Values.pullPolicy }}
-        command: ["/fission-bundle"]
+        command: ["bundle"]
         args: ["--controllerPort", "8888"]
         env:
         - name: FISSION_FUNCTION_NAMESPACE
@@ -206,7 +206,7 @@ spec:
       - name: executor
         image: {{ include "fission-bundleImage" . | quote }}
         imagePullPolicy: {{ .Values.pullPolicy }}
-        command: ["/fission-bundle"]
+        command: ["bundle"]
         args: ["--executorPort", "8888", "--namespace", "{{ .Values.functionNamespace }}"]
         env:
         - name: FETCHER_IMAGE
@@ -284,7 +284,7 @@ spec:
       - name: buildermgr
         image: {{ include "fission-bundleImage" . | quote }}
         imagePullPolicy: {{ .Values.pullPolicy }}
-        command: ["/fission-bundle"]
+        command: ["bundle"]
         args: ["--builderMgr", "--storageSvcUrl", "http://storagesvc.{{ .Release.Namespace }}", "--envbuilder-namespace", "{{ .Values.builderNamespace }}"]
         env:
         - name: FETCHER_IMAGE
@@ -340,7 +340,7 @@ spec:
       - name: kubewatcher
         image: {{ include "fission-bundleImage" . | quote }}
         imagePullPolicy: {{ .Values.pullPolicy }}
-        command: ["/fission-bundle"]
+        command: ["bundle"]
         args: ["--kubewatcher", "--routerUrl", "http://router.{{ .Release.Namespace }}"]
         env:
         - name: TRACE_JAEGER_COLLECTOR_ENDPOINT
@@ -478,7 +478,7 @@ spec:
       - name: timer
         image: {{ include "fission-bundleImage" . | quote }}
         imagePullPolicy: {{ .Values.pullPolicy }}
-        command: ["/fission-bundle"]
+        command: ["bundle"]
         args: ["--timer", "--routerUrl", "http://router.{{ .Release.Namespace }}"]
         env:
         - name: DEBUG_ENV
@@ -599,7 +599,7 @@ spec:
       - name: mqtrigger
         image: {{ include "fission-bundleImage" . | quote }}
         imagePullPolicy: {{ .Values.pullPolicy }}
-        command: ["/fission-bundle"]
+        command: ["bundle"]
         args: ["--mqt", "--routerUrl", "http://router.{{ .Release.Namespace }}"]
         env:
         - name: MESSAGE_QUEUE_TYPE
@@ -658,7 +658,7 @@ spec:
         image: "{{ .Values.image }}:{{ .Values.imageTag }}"
       {{- end }}
         imagePullPolicy: {{ .Values.pullPolicy }}
-        command: ["/fission-bundle"]
+        command: ["bundle"]
         args: ["--mqt", "--routerUrl", "http://router.{{ .Release.Namespace }}"]
         env:
         - name: MESSAGE_QUEUE_TYPE
@@ -754,7 +754,7 @@ spec:
         image: "{{ .Values.image }}:{{ .Values.imageTag }}"
       {{- end }}
         imagePullPolicy: {{ .Values.pullPolicy }}
-        command: ["/fission-bundle"]
+        command: ["bundle"]
         args: ["--mqt", "--routerUrl", "http://router.{{ .Release.Namespace }}"]
         env:
         - name: TRACE_JAEGER_COLLECTOR_ENDPOINT
@@ -802,7 +802,7 @@ spec:
       - name: storagesvc
         image: {{ include "fission-bundleImage" . | quote }}
         imagePullPolicy: {{ .Values.pullPolicy }}
-        command: ["/fission-bundle"]
+        command: ["bundle"]
         {{- if and (.Values.persistence.enabled) (eq (.Values.persistence.storageType | default "local") "s3") }}
         args: ["--storageServicePort", "8000", "--storageType", "s3"]
         {{- else }}
@@ -893,7 +893,7 @@ spec:
       - name:  mqtrigger-keda
         image: {{ include "fission-bundleImage" . | quote }}
         imagePullPolicy: {{ .Values.pullPolicy }}
-        command: ["/fission-bundle"]
+        command: ["bundle"]
         args: ["--mqt_keda", "--routerUrl", "http://router.{{ .Release.Namespace }}"]
         env:
         - name: TRACE_JAEGER_COLLECTOR_ENDPOINT

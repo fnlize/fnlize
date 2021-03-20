@@ -4,10 +4,10 @@
 
 ## Kubernetes configuration
 ## For minikube, set this to NodePort, elsewhere use LoadBalancer or ClusterIP.
-serviceType: ClusterIP
+serviceType: NodePort
 
 ## For minikube, set this to NodePort, elsewhere use LoadBalancer or ClusterIP.
-routerServiceType: LoadBalancer
+routerServiceType: NodePort
 
 ## Image base repository
 ## Leave it empty for using existing local image

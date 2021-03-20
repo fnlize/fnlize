@@ -4,10 +4,10 @@
 
 ## Kubernetes configuration
 ## For minikube, set this to NodePort, elsewhere use LoadBalancer or ClusterIP.
-serviceType: ClusterIP
+serviceType: NodePort
 
 ## For minikube, set this to NodePort, elsewhere use LoadBalancer or ClusterIP.
-routerServiceType: LoadBalancer
+routerServiceType: NodePort
 
 ## Image base repository
 ## Leave it empty for using existing local image
@@ -191,7 +191,6 @@ kafka:
       userCert: "" # path to certificate containing public key of the user signed by CA authority
       userKey: "" # path to private key of the user
 
-
   # brokers: 'my-broker.kafka:9092' # or my-bootstrap-server.kafka:9092/9093
   # Sample config for authentication
   #   authentication:
@@ -200,7 +199,6 @@ kafka:
   #     caCert: 'auth/kafka/ca.crt'
   #     userCert: 'auth/kafka/user.crt'
   #     userKey: 'auth/kafka/user.key'
-
   ## version of Kafka broker
   ## For 0.x it must be a string in the format
   ## "major.minor.veryMinor.patch" example: 0.8.2.0
