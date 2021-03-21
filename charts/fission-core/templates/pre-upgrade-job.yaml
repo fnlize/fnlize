@@ -28,6 +28,6 @@ spec:
       - name: pre-upgrade-job
         image: {{ .Values.preUpgradeChecksImage }}:{{ .Values.imageTag }}
         imagePullPolicy: {{ .Values.pullPolicy }}
-        command: [ "/pre-upgrade-checks" ]
+        command: [ "/preupgradechecks" ]
         args: ["--fn-pod-namespace", "{{ .Values.functionNamespace }}", "--envbuilder-namespace", "{{ .Values.builderNamespace }}"]
       serviceAccountName: fission-svc

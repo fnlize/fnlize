@@ -64,7 +64,7 @@ deploy:
           helm: null
 
 profiles:
-  - name: kind
+  - name: minikube
     patches:
       - op: replace
         path: /deploy/helm/releases/0/setValues/repository
@@ -72,7 +72,7 @@ profiles:
       - op: replace
         path: /deploy/helm/releases/0/setValues/routerServiceType
         value: "NodePort"
-  - name: kind-ci
+  - name: minikube-ci
     patches:
       - op: replace
         path: /deploy/helm/releases/0/setValues/repository

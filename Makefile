@@ -32,10 +32,6 @@ build:
 	    $(CMD_DIR)/$${target};                                      \
 	done
 
-.PHONY: install
-install: build
-	$(INSTALL) $(OUTPUT_DIR)/cli $(GOPATH)/bin/fission
-
 .PHONY: image
 image:
 	@for target in $(TARGETS); do                                     \
@@ -49,3 +45,7 @@ image:
 	    --build-arg TARGET=$${target}                                 \
 	    -f $(BUILD_DIR)/$${target}/Dockerfile .;                      \
 	done
+
+.PHONY: install
+install: build
+	install -m 755 $(OUTPUT_DIR)/cli $(GOPATH)/bin/fission

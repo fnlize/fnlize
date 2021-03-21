@@ -29,4 +29,4 @@ jobs:
           minikube start
       - name: Install application
         run: |
-          skaffold run -p kind-ci
+          skaffold run -p minikube-ci

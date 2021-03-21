@@ -58,7 +58,7 @@ Parameter | Description | Default
 `analytics` | Analytics let us count how many people installed fission. Set to false to disable analytics | `true`
 `analyticsNonHelmInstall` | Internally used for generating an analytics job for non-helm installs | `false`
 `pruneInterval` | The frequency of archive pruner (in minutes) | `60`
-`preUpgradeChecksImage` | Fission pre-install/pre-upgrade checks live in this image | `fission/pre-upgrade-checks`
+`preUpgradeChecksImage` | Fission pre-install/pre-upgrade checks live in this image | `fission/preupgradechecks`
 `debugEnv` | If there are any pod specialization errors when a function is triggered and this flag is set to true, the error summary is returned as part of http response | `true`
 `prometheus.enabled` | Set to true if prometheus needs to be deployed along with fission | `true` in `fission-all`, `false` in `fission-core`
 `prometheus.serviceEndpoint` | If prometheus.enabled is false, please assign the prometheus service URL that is accessible by components. | `nil`

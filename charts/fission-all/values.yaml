@@ -285,7 +285,7 @@ busyboxImage: busybox
 pruneInterval: 60
 
 ## Fission pre-install/pre-upgrade checks live in this image
-preUpgradeChecksImage: fission/pre-upgrade-checks
+preUpgradeChecksImage: fission/preupgradechecks
 
 ## if there are any pod specialization errors when a function is triggered and this flag is set to true, the error
 ## summary is returned as part of http response
